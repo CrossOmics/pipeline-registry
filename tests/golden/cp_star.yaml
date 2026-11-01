@@ -1,0 +1,50 @@
+schema_version: 1
+id: cp_star
+name: STAR
+kind: tool
+description: Spliced Transcripts Alignment to a Reference; ultrafast RNA-seq read aligner.
+domain: transcriptomics
+modalities:
+- bulk-rna-seq
+- scrna-seq
+inputs:
+- fastq
+outputs:
+- bam
+algorithms:
+- suffix array
+- seed-and-extend
+keywords:
+- alignment
+- rna-seq
+- splice-aware
+status: active
+repositories:
+- url: https://github.com/alexdobin/STAR
+  primary: true
+papers:
+- doi: 10.1093/bioinformatics/bts635
+  title: 'STAR: ultrafast universal RNA-seq aligner'
+contributors:
+- name: Alexander Dobin
+  github: alexdobin
+  role: creator
+versions:
+- id: cv_star_1
+  kind: original
+  label: 2.7.10b
+  repo: https://github.com/alexdobin/STAR
+  commit: 3f1c0a4b9e2d7c6a5b4f3e2d1c0b9a8f7e6d5c4b
+  parent: null
+  released_at: '2022-11-01'
+  contributors:
+  - name: Alexander Dobin
+    github: alexdobin
+    role: maintainer
+- id: cv_star_2
+  kind: original
+  label: 2.7.11b
+  repo: https://github.com/alexdobin/STAR
+  commit: 5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f
+  parent: cv_star_1
+  released_at: '2024-01-25'
