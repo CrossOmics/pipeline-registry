@@ -1,0 +1,48 @@
+schema_version: 1
+id: cp_bwa
+name: BWA
+kind: tool
+description: Burrow-Wheeler Aligner for short-read alignment (see minimap2 for long-read alignment)
+domain: genomics
+modalities:
+- dna-seq
+- wgs
+- wes
+inputs:
+- fastq
+outputs:
+- bam
+algorithms:
+- BWA-MEM
+- BWA-backtrack
+status: active
+repositories:
+- url: https://github.com/lh3/bwa
+  primary: true
+papers:
+- doi: 10.1093/bioinformatics/btp324
+  title: Fast and accurate short read alignment with Burrows–Wheeler transform
+contributors:
+- name: lh3
+  github: lh3
+  role: maintainer
+versions:
+- id: cv_bwa_1
+  kind: original
+  label: v0.7.19
+  repo: https://github.com/lh3/bwa
+  commit: b92993c1161e73167181558856567ef2f367e3f0
+  parent: null
+  released_at: '2025-03-22'
+- id: cv_bwa_2
+  kind: optimization
+  label: v2.3
+  repo: https://github.com/bwa-mem2/bwa-mem2
+  commit: 7aa5ff6c3330490e5629ab9b7327683d2dce02d6
+  parent: cv_bwa_1
+  released_at: '2024-05-08'
+  contributors:
+  - name: bwa-mem2
+    github: bwa-mem2
+    role: developer
+  improvement: BWA-MEM re-implemented for modern CPUs (SSE4.1/AVX2/AVX-512), with the same alignments as bwa mem.

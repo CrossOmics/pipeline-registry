@@ -1,0 +1,501 @@
+{
+  "repositories": [
+    {
+      "repo": "nf-core/rnaseq",
+      "url": "https://github.com/nf-core/rnaseq",
+      "archived": false,
+      "description": "RNA sequencing analysis pipeline using STAR, RSEM, HISAT2 or Salmon with gene/isoform counts and extensive quality control.",
+      "full_name": "nf-core/rnaseq",
+      "owner": "nf-core"
+    },
+    {
+      "repo": "nf-core/scrnaseq",
+      "url": "https://github.com/nf-core/scrnaseq",
+      "archived": false,
+      "description": "Single-cell RNA-Seq pipeline for barcode-based protocols such as 10x, DropSeq or SmartSeq, offering a variety of aligners and empty-droplet detection",
+      "full_name": "nf-core/scrnaseq",
+      "owner": "nf-core"
+    },
+    {
+      "repo": "nf-core/atacseq",
+      "url": "https://github.com/nf-core/atacseq",
+      "archived": false,
+      "description": "ATAC-seq peak-calling and QC analysis pipeline",
+      "full_name": "nf-core/atacseq",
+      "owner": "nf-core"
+    },
+    {
+      "repo": "nf-core/chipseq",
+      "url": "https://github.com/nf-core/chipseq",
+      "archived": false,
+      "description": "ChIP-seq peak-calling, QC and differential analysis pipeline.",
+      "full_name": "nf-core/chipseq",
+      "owner": "nf-core"
+    },
+    {
+      "repo": "nf-core/sarek",
+      "url": "https://github.com/nf-core/sarek",
+      "archived": false,
+      "description": "Analysis pipeline to detect germline or somatic variants (pre-processing, variant calling and annotation) from WGS / targeted sequencing",
+      "full_name": "nf-core/sarek",
+      "owner": "nf-core"
+    },
+    {
+      "repo": "nf-core/methylseq",
+      "url": "https://github.com/nf-core/methylseq",
+      "archived": false,
+      "description": "Methylation (Bisulfite-Sequencing) analysis pipeline using Bismark/bwa-meth + MethylDackel or bwa-mem + rastair",
+      "full_name": "nf-core/methylseq",
+      "owner": "nf-core"
+    },
+    {
+      "repo": "nf-core/hic",
+      "url": "https://github.com/nf-core/hic",
+      "archived": false,
+      "description": "Analysis of Chromosome Conformation Capture data (Hi-C)",
+      "full_name": "nf-core/hic",
+      "owner": "nf-core"
+    },
+    {
+      "repo": "10XGenomics/cellranger",
+      "url": "https://github.com/10XGenomics/cellranger",
+      "archived": false,
+      "description": "10x Genomics Single Cell Analysis",
+      "full_name": "10XGenomics/cellranger",
+      "owner": "10XGenomics"
+    },
+    {
+      "repo": "alexdobin/STAR",
+      "url": "https://github.com/alexdobin/STAR",
+      "archived": false,
+      "description": "RNA-seq aligner",
+      "full_name": "alexdobin/STAR",
+      "owner": "alexdobin"
+    },
+    {
+      "repo": "lh3/bwa",
+      "url": "https://github.com/lh3/bwa",
+      "archived": false,
+      "description": "Burrow-Wheeler Aligner for short-read alignment (see minimap2 for long-read alignment)",
+      "full_name": "lh3/bwa",
+      "owner": "lh3"
+    },
+    {
+      "repo": "pachterlab/kb_python",
+      "url": "https://github.com/pachterlab/kb_python",
+      "archived": false,
+      "description": "A wrapper for the kallisto | bustools workflow for single-cell RNA-seq pre-processing",
+      "full_name": "pachterlab/kb_python",
+      "owner": "pachterlab"
+    },
+    {
+      "repo": "COMBINE-lab/simpleaf",
+      "url": "https://github.com/COMBINE-lab/simpleaf",
+      "archived": false,
+      "description": "A rust framework to make using alevin-fry even simpler",
+      "full_name": "COMBINE-lab/simpleaf",
+      "owner": "COMBINE-lab"
+    },
+    {
+      "repo": "scverse/scanpy",
+      "url": "https://github.com/scverse/scanpy",
+      "archived": false,
+      "description": "Single-cell analysis in Python. Scales to >100M cells.",
+      "full_name": "scverse/scanpy",
+      "owner": "scverse"
+    },
+    {
+      "repo": "satijalab/seurat",
+      "url": "https://github.com/satijalab/seurat",
+      "archived": false,
+      "description": "R toolkit for single cell genomics",
+      "full_name": "satijalab/seurat",
+      "owner": "satijalab"
+    },
+    {
+      "repo": "broadinstitute/CellBender",
+      "url": "https://github.com/broadinstitute/CellBender",
+      "archived": false,
+      "description": "CellBender is a software package for eliminating technical artifacts from high-throughput single-cell RNA sequencing (scRNA-seq) data.",
+      "full_name": "broadinstitute/CellBender",
+      "owner": "broadinstitute"
+    },
+    {
+      "repo": "scverse/scvi-tools",
+      "url": "https://github.com/scverse/scvi-tools",
+      "archived": false,
+      "description": "Deep probabilistic analysis of single-cell and spatial omics data",
+      "full_name": "scverse/scvi-tools",
+      "owner": "scverse"
+    },
+    {
+      "repo": "GreenleafLab/ArchR",
+      "url": "https://github.com/GreenleafLab/ArchR",
+      "archived": false,
+      "description": "ArchR : Analysis of Regulatory Chromatin in R (www.ArchRProject.com)",
+      "full_name": "GreenleafLab/ArchR",
+      "owner": "GreenleafLab"
+    },
+    {
+      "repo": "stuart-lab/signac",
+      "url": "https://github.com/stuart-lab/signac",
+      "archived": false,
+      "description": "R toolkit for the analysis of single-cell chromatin data",
+      "full_name": "stuart-lab/signac",
+      "owner": "stuart-lab"
+    },
+    {
+      "repo": "kundajelab/atac_dnase_pipelines",
+      "url": "https://github.com/kundajelab/atac_dnase_pipelines",
+      "archived": false,
+      "description": "ATAC-seq and DNase-seq processing pipeline",
+      "full_name": "kundajelab/atac_dnase_pipelines",
+      "owner": "kundajelab"
+    },
+    {
+      "repo": "ENCODE-DCC/atac-seq-pipeline",
+      "url": "https://github.com/ENCODE-DCC/atac-seq-pipeline",
+      "archived": false,
+      "description": "ENCODE ATAC-seq pipeline",
+      "full_name": "ENCODE-DCC/atac-seq-pipeline",
+      "owner": "ENCODE-DCC"
+    },
+    {
+      "repo": "kundajelab/chipseq_pipeline",
+      "url": "https://github.com/kundajelab/chipseq_pipeline",
+      "archived": false,
+      "description": "AQUAS TF and histone ChIP-seq pipeline",
+      "full_name": "kundajelab/chipseq_pipeline",
+      "owner": "kundajelab"
+    },
+    {
+      "repo": "ENCODE-DCC/chip-seq-pipeline2",
+      "url": "https://github.com/ENCODE-DCC/chip-seq-pipeline2",
+      "archived": false,
+      "description": "ENCODE ChIP-seq pipeline",
+      "full_name": "ENCODE-DCC/chip-seq-pipeline2",
+      "owner": "ENCODE-DCC"
+    },
+    {
+      "repo": "snakemake-workflows/rna-seq-star-deseq2",
+      "url": "https://github.com/snakemake-workflows/rna-seq-star-deseq2",
+      "archived": false,
+      "description": "RNA-seq workflow using STAR and DESeq2",
+      "full_name": "snakemake-workflows/rna-seq-star-deseq2",
+      "owner": "snakemake-workflows"
+    },
+    {
+      "repo": "broadinstitute/warp",
+      "url": "https://github.com/broadinstitute/warp",
+      "archived": false,
+      "description": "Warp Analysis Research Pipelines",
+      "full_name": "broadinstitute/warp",
+      "owner": "broadinstitute"
+    },
+    {
+      "repo": "bcbio/bcbio-nextgen",
+      "url": "https://github.com/bcbio/bcbio-nextgen",
+      "archived": false,
+      "description": "Validated, scalable, community developed variant calling, RNA-seq and small RNA analysis",
+      "full_name": "bcbio/bcbio-nextgen",
+      "owner": "bcbio"
+    }
+  ],
+  "versions": [
+    {
+      "repo": "nf-core/rnaseq",
+      "tag": "3.27.0",
+      "sha": "a1fcdddd3b826fe46eb46f0479f2ff8a7815af05",
+      "date": "2026-09-23T12:50:05Z",
+      "url": "https://github.com/nf-core/rnaseq/commit/a1fcdddd3b826fe46eb46f0479f2ff8a7815af05"
+    },
+    {
+      "repo": "nf-core/scrnaseq",
+      "tag": "4.2.0",
+      "sha": "3fc17b4f971a89e47c88337de71d0e777ffad8cc",
+      "date": "2026-07-03T13:18:58Z",
+      "url": "https://github.com/nf-core/scrnaseq/commit/3fc17b4f971a89e47c88337de71d0e777ffad8cc"
+    },
+    {
+      "repo": "nf-core/atacseq",
+      "tag": "2.1.2",
+      "sha": "1a1dbe52ffbd82256c941a032b0e22abbd925b8a",
+      "date": "2023-08-07T21:59:50Z",
+      "url": "https://github.com/nf-core/atacseq/commit/1a1dbe52ffbd82256c941a032b0e22abbd925b8a"
+    },
+    {
+      "repo": "nf-core/chipseq",
+      "tag": "2.1.0",
+      "sha": "76e2382b6d443db4dc2396e6831d1243256d80b0",
+      "date": "2024-10-07T15:13:32Z",
+      "url": "https://github.com/nf-core/chipseq/commit/76e2382b6d443db4dc2396e6831d1243256d80b0"
+    },
+    {
+      "repo": "nf-core/sarek",
+      "tag": "3.11.0",
+      "sha": "6e9b164daa2a54c98f7dda538645d340c561ac24",
+      "date": "2026-10-26T17:11:35Z",
+      "url": "https://github.com/nf-core/sarek/commit/6e9b164daa2a54c98f7dda538645d340c561ac24"
+    },
+    {
+      "repo": "nf-core/methylseq",
+      "tag": "4.2.0",
+      "sha": "5aa56467a85a5e2d6795ea72dfa5a5f0c9babc23",
+      "date": "2025-12-12T10:45:15Z",
+      "url": "https://github.com/nf-core/methylseq/commit/5aa56467a85a5e2d6795ea72dfa5a5f0c9babc23"
+    },
+    {
+      "repo": "nf-core/hic",
+      "tag": "2.1.0",
+      "sha": "fe4ac656317d24c37e81e7940a526ed9ea812f8e",
+      "date": "2023-06-01T13:42:56Z",
+      "url": "https://github.com/nf-core/hic/commit/fe4ac656317d24c37e81e7940a526ed9ea812f8e"
+    },
+    {
+      "repo": "10XGenomics/cellranger",
+      "tag": "cellranger-10.1.0",
+      "sha": "669395e208db7ce03354091e271d893074294d28",
+      "date": "2026-07-16T20:24:38Z",
+      "url": "https://github.com/10XGenomics/cellranger/commit/669395e208db7ce03354091e271d893074294d28"
+    },
+    {
+      "repo": "alexdobin/STAR",
+      "tag": "2.7.11b",
+      "sha": "b1edc1208d91a53bf40ebae8669f71d50b994851",
+      "date": "2024-01-25T21:55:29Z",
+      "url": "https://github.com/alexdobin/STAR/commit/b1edc1208d91a53bf40ebae8669f71d50b994851"
+    },
+    {
+      "repo": "alexdobin/STAR",
+      "tag": "2.7.11a",
+      "sha": "79affaae7d5e70221287762eab4e40679fad87f7",
+      "date": "2023-08-15T19:21:58Z",
+      "url": "https://github.com/alexdobin/STAR/commit/79affaae7d5e70221287762eab4e40679fad87f7"
+    },
+    {
+      "repo": "lh3/bwa",
+      "tag": "v0.7.19",
+      "sha": "b92993c1161e73167181558856567ef2f367e3f0",
+      "date": "2025-03-22T18:55:09Z",
+      "url": "https://github.com/lh3/bwa/commit/b92993c1161e73167181558856567ef2f367e3f0"
+    },
+    {
+      "repo": "pachterlab/kb_python",
+      "tag": "v0.30.2",
+      "sha": "188d9c7034498d83be86a461659968dd8da2db7f",
+      "date": "2026-05-19T07:05:01Z",
+      "url": "https://github.com/pachterlab/kb_python/commit/188d9c7034498d83be86a461659968dd8da2db7f"
+    },
+    {
+      "repo": "COMBINE-lab/simpleaf",
+      "tag": "v0.32.0",
+      "sha": "b5b151b4d87aeaad1506245beee3269d88f2c7f5",
+      "date": "2026-10-26T18:27:16Z",
+      "url": "https://github.com/COMBINE-lab/simpleaf/commit/b5b151b4d87aeaad1506245beee3269d88f2c7f5"
+    },
+    {
+      "repo": "scverse/scanpy",
+      "tag": "1.12.5",
+      "sha": "02513e1ac31a7e8fb4b0349ff9039cc66812f40c",
+      "date": "2026-10-29T14:00:41Z",
+      "url": "https://github.com/scverse/scanpy/commit/02513e1ac31a7e8fb4b0349ff9039cc66812f40c"
+    },
+    {
+      "repo": "satijalab/seurat",
+      "tag": "v5.6.0",
+      "sha": "75dfa8603befe31505e6287d32dc86c607732bd6",
+      "date": "2026-10-02T23:15:02Z",
+      "url": "https://github.com/satijalab/seurat/commit/75dfa8603befe31505e6287d32dc86c607732bd6"
+    },
+    {
+      "repo": "broadinstitute/CellBender",
+      "tag": "v0.4.0",
+      "sha": "18263f4fe744fe5821962e2ededa09a732e3993c",
+      "date": "2026-08-14T16:12:24Z",
+      "url": "https://github.com/broadinstitute/CellBender/commit/18263f4fe744fe5821962e2ededa09a732e3993c"
+    },
+    {
+      "repo": "scverse/scvi-tools",
+      "tag": "1.5.2",
+      "sha": "857385851ef02d68764e38f8a348fcb3c4d7c5c6",
+      "date": "2026-10-28T10:40:39Z",
+      "url": "https://github.com/scverse/scvi-tools/commit/857385851ef02d68764e38f8a348fcb3c4d7c5c6"
+    },
+    {
+      "repo": "GreenleafLab/ArchR",
+      "tag": "v1.0.3",
+      "sha": "eda96f593dc5b57c9f23fcc00419e6f74cf66e55",
+      "date": "2025-02-07T01:22:29Z",
+      "url": "https://github.com/GreenleafLab/ArchR/commit/eda96f593dc5b57c9f23fcc00419e6f74cf66e55"
+    },
+    {
+      "repo": "stuart-lab/signac",
+      "tag": "1.17.1",
+      "sha": "12d1ff82774890b08e55b3101f36fab83e674b88",
+      "date": "2026-04-06T08:44:46Z",
+      "url": "https://github.com/stuart-lab/signac/commit/12d1ff82774890b08e55b3101f36fab83e674b88"
+    },
+    {
+      "repo": "kundajelab/atac_dnase_pipelines",
+      "tag": "HEAD",
+      "sha": "7e8f2bd4c7ad7fbbc33f91801f51a925c77c4414",
+      "date": "2019-09-25T18:06:03Z",
+      "url": "https://github.com/kundajelab/atac_dnase_pipelines/commit/7e8f2bd4c7ad7fbbc33f91801f51a925c77c4414"
+    },
+    {
+      "repo": "ENCODE-DCC/atac-seq-pipeline",
+      "tag": "v2.2.3",
+      "sha": "47ba8dff9c332e24b48e767303e9fcac98589cf2",
+      "date": "2024-02-15T23:08:04Z",
+      "url": "https://github.com/ENCODE-DCC/atac-seq-pipeline/commit/47ba8dff9c332e24b48e767303e9fcac98589cf2"
+    },
+    {
+      "repo": "kundajelab/chipseq_pipeline",
+      "tag": "HEAD",
+      "sha": "562c8ed56310032e002d72ef1459d4f000e20193",
+      "date": "2019-01-03T16:57:22Z",
+      "url": "https://github.com/kundajelab/chipseq_pipeline/commit/562c8ed56310032e002d72ef1459d4f000e20193"
+    },
+    {
+      "repo": "ENCODE-DCC/chip-seq-pipeline2",
+      "tag": "v2.2.2",
+      "sha": "26eeda81a0540dc793fc69b0c390d232ca7ca50a",
+      "date": "2024-02-15T23:33:05Z",
+      "url": "https://github.com/ENCODE-DCC/chip-seq-pipeline2/commit/26eeda81a0540dc793fc69b0c390d232ca7ca50a"
+    },
+    {
+      "repo": "snakemake-workflows/rna-seq-star-deseq2",
+      "tag": "v3.1.2",
+      "sha": "b9617cfe8945b5747a0e93ef3b94833807c844c7",
+      "date": "2026-10-07T21:26:40Z",
+      "url": "https://github.com/snakemake-workflows/rna-seq-star-deseq2/commit/b9617cfe8945b5747a0e93ef3b94833807c844c7"
+    },
+    {
+      "repo": "broadinstitute/warp",
+      "tag": "Multiome_v8.0.0",
+      "sha": "80345efb74af5c758e2a7e60585f2bb7f12be33e",
+      "date": "2026-10-30T14:48:59Z",
+      "url": "https://github.com/broadinstitute/warp/commit/80345efb74af5c758e2a7e60585f2bb7f12be33e"
+    },
+    {
+      "repo": "bcbio/bcbio-nextgen",
+      "tag": "v1.2.9",
+      "sha": "a2cbdd17a2246429976ae0f0b04b84c8b0252049",
+      "date": "2021-12-15T03:34:44Z",
+      "url": "https://github.com/bcbio/bcbio-nextgen/commit/a2cbdd17a2246429976ae0f0b04b84c8b0252049"
+    },
+    {
+      "repo": "bwa-mem2/bwa-mem2",
+      "tag": "v2.3",
+      "sha": "7aa5ff6c3330490e5629ab9b7327683d2dce02d6",
+      "date": "2024-05-08T18:49:51Z",
+      "url": "https://github.com/bwa-mem2/bwa-mem2/commit/7aa5ff6c3330490e5629ab9b7327683d2dce02d6"
+    },
+    {
+      "repo": "scverse/rapids-singlecell",
+      "tag": "v0.18.1",
+      "published_at": "2026-10-12T09:17:10Z",
+      "url": "https://github.com/scverse/rapids-singlecell/commit/ad9b8470baf9ee21d9f89ac16e25b43d13115e0a",
+      "sha": "ad9b8470baf9ee21d9f89ac16e25b43d13115e0a",
+      "date": "2026-10-12T08:18:02Z"
+    }
+  ],
+  "papers": [
+    {
+      "doi": "10.1002/0471250953.bi1110s43",
+      "status": 200,
+      "title": "From FastQ Data to High‐Confidence Variant Calls: The Genome Analysis Toolkit Best Practices Pipeline",
+      "url": "https://doi.org/10.1002/0471250953.bi1110s43"
+    },
+    {
+      "doi": "10.1016/j.cell.2021.04.048",
+      "status": 200,
+      "title": "Integrated analysis of multimodal single-cell data",
+      "url": "https://doi.org/10.1016/j.cell.2021.04.048"
+    },
+    {
+      "doi": "10.1038/ncomms14049",
+      "status": 200,
+      "title": "Massively parallel digital transcriptional profiling of single cells",
+      "url": "https://doi.org/10.1038/ncomms14049"
+    },
+    {
+      "doi": "10.1038/s41587-020-0439-x",
+      "status": 200,
+      "title": "The nf-core framework for community-curated bioinformatics pipelines",
+      "url": "https://doi.org/10.1038/s41587-020-0439-x"
+    },
+    {
+      "doi": "10.1038/s41587-021-00870-2",
+      "status": 200,
+      "title": "Modular, efficient and constant-memory single-cell RNA-seq preprocessing",
+      "url": "https://doi.org/10.1038/s41587-021-00870-2"
+    },
+    {
+      "doi": "10.1038/s41587-021-01206-w",
+      "status": 200,
+      "title": "A Python library for probabilistic analysis of single-cell omics data",
+      "url": "https://doi.org/10.1038/s41587-021-01206-w"
+    },
+    {
+      "doi": "10.1038/s41588-021-00790-6",
+      "status": 200,
+      "title": "ArchR is a scalable software package for integrative single-cell chromatin accessibility analysis",
+      "url": "https://doi.org/10.1038/s41588-021-00790-6"
+    },
+    {
+      "doi": "10.1038/s41592-021-01282-5",
+      "status": 200,
+      "title": "Single-cell chromatin state analysis with Signac",
+      "url": "https://doi.org/10.1038/s41592-021-01282-5"
+    },
+    {
+      "doi": "10.1038/s41592-022-01408-3",
+      "status": 200,
+      "title": "Alevin-fry unlocks rapid, accurate and memory-frugal quantification of single-cell RNA-seq data",
+      "url": "https://doi.org/10.1038/s41592-022-01408-3"
+    },
+    {
+      "doi": "10.1038/s41592-023-01943-7",
+      "status": 200,
+      "title": "Unsupervised removal of systematic background noise from droplet-based single-cell experiments using CellBender",
+      "url": "https://doi.org/10.1038/s41592-023-01943-7"
+    },
+    {
+      "doi": "10.1093/bioinformatics/btp324",
+      "status": 200,
+      "title": "Fast and accurate short read alignment with Burrows–Wheeler transform",
+      "url": "https://doi.org/10.1093/bioinformatics/btp324"
+    },
+    {
+      "doi": "10.1093/bioinformatics/bts635",
+      "status": 200,
+      "title": "STAR: ultrafast universal RNA-seq aligner",
+      "url": "https://doi.org/10.1093/bioinformatics/bts635"
+    },
+    {
+      "doi": "10.1101/2021.05.05.442755",
+      "status": 200,
+      "title": "STARsolo: accurate, fast and versatile mapping/quantification of single-cell and single-nucleus RNA-seq data",
+      "url": "https://doi.org/10.1101/2021.05.05.442755"
+    },
+    {
+      "doi": "10.1186/s13059-017-1382-0",
+      "status": 200,
+      "title": "SCANPY: large-scale single-cell gene expression data analysis",
+      "url": "https://doi.org/10.1186/s13059-017-1382-0"
+    },
+    {
+      "doi": "10.12688/f1000research.16665.2",
+      "status": 200,
+      "openalex_status": 429,
+      "url": "https://f1000research.com/articles/9-63/v2"
+    },
+    {
+      "doi": "10.12688/f1000research.29032.2",
+      "status": 200,
+      "title": "Sustainable data analysis with Snakemake",
+      "url": "https://doi.org/10.12688/f1000research.29032.2"
+    }
+  ]
+}

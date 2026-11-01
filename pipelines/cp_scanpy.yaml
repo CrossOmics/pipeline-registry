@@ -1,0 +1,48 @@
+schema_version: 1
+id: cp_scanpy
+name: Scanpy
+kind: tool
+description: Single-cell analysis in Python. Scales to >100M cells.
+domain: transcriptomics
+modalities:
+- scrna-seq
+inputs:
+- h5ad
+outputs:
+- h5ad
+algorithms:
+- PCA
+- UMAP
+- Leiden
+- Wilcoxon
+status: active
+repositories:
+- url: https://github.com/scverse/scanpy
+  primary: true
+papers:
+- doi: 10.1186/s13059-017-1382-0
+  title: 'SCANPY: large-scale single-cell gene expression data analysis'
+contributors:
+- name: scverse
+  github: scverse
+  role: maintainer
+versions:
+- id: cv_scanpy_1
+  kind: original
+  label: 1.12.5
+  repo: https://github.com/scverse/scanpy
+  commit: 02513e1ac31a7e8fb4b0349ff9039cc66812f40c
+  parent: null
+  released_at: '2026-10-29'
+- id: cv_scanpy_2
+  kind: optimization
+  label: v0.18.1
+  repo: https://github.com/scverse/rapids-singlecell
+  commit: ad9b8470baf9ee21d9f89ac16e25b43d13115e0a
+  parent: cv_scanpy_1
+  released_at: '2026-10-12'
+  contributors:
+  - name: scverse
+    github: scverse
+    role: developer
+  improvement: GPU (RAPIDS) implementations of Scanpy preprocessing, embedding and clustering functions on AnnData objects.

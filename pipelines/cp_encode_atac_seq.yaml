@@ -1,0 +1,34 @@
+schema_version: 1
+id: cp_encode_atac_seq
+name: ENCODE ATAC-seq pipeline
+kind: workflow
+description: ENCODE ATAC-seq pipeline
+domain: epigenomics
+modalities:
+- atac-seq
+inputs:
+- fastq
+outputs:
+- bam
+- bed
+- bigwig
+algorithms:
+- Bowtie2
+- MACS2
+- IDR
+status: active
+repositories:
+- url: https://github.com/ENCODE-DCC/atac-seq-pipeline
+  primary: true
+contributors:
+- name: ENCODE-DCC
+  github: ENCODE-DCC
+  role: maintainer
+versions:
+- id: cv_encode_atac_seq_1
+  kind: original
+  label: v2.2.3
+  repo: https://github.com/ENCODE-DCC/atac-seq-pipeline
+  commit: 47ba8dff9c332e24b48e767303e9fcac98589cf2
+  parent: null
+  released_at: '2024-02-15'

@@ -1,0 +1,37 @@
+schema_version: 1
+id: cp_nf_core_rnaseq
+name: nf-core/rnaseq
+kind: workflow
+description: RNA sequencing analysis pipeline using STAR, RSEM, HISAT2 or Salmon with gene/isoform counts and extensive quality control.
+domain: transcriptomics
+modalities:
+- bulk-rna-seq
+inputs:
+- fastq
+outputs:
+- bam
+- counts-tsv
+algorithms:
+- STAR
+- Salmon
+- RSEM
+- HISAT2
+status: active
+repositories:
+- url: https://github.com/nf-core/rnaseq
+  primary: true
+papers:
+- doi: 10.1038/s41587-020-0439-x
+  title: The nf-core framework for community-curated bioinformatics pipelines
+contributors:
+- name: nf-core
+  github: nf-core
+  role: maintainer
+versions:
+- id: cv_nf_core_rnaseq_1
+  kind: original
+  label: 3.27.0
+  repo: https://github.com/nf-core/rnaseq
+  commit: a1fcdddd3b826fe46eb46f0479f2ff8a7815af05
+  parent: null
+  released_at: '2026-09-23'

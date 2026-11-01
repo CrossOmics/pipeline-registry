@@ -1,0 +1,34 @@
+schema_version: 1
+id: cp_cellranger
+name: Cell Ranger
+kind: workflow
+description: 10x Genomics Single Cell Analysis
+domain: transcriptomics
+modalities:
+- scrna-seq
+inputs:
+- fastq
+outputs:
+- bam
+- mtx
+algorithms:
+- STAR
+status: active
+repositories:
+- url: https://github.com/10XGenomics/cellranger
+  primary: true
+papers:
+- doi: 10.1038/ncomms14049
+  title: Massively parallel digital transcriptional profiling of single cells
+contributors:
+- name: 10XGenomics
+  github: 10XGenomics
+  role: maintainer
+versions:
+- id: cv_cellranger_1
+  kind: original
+  label: cellranger-10.1.0
+  repo: https://github.com/10XGenomics/cellranger
+  commit: 669395e208db7ce03354091e271d893074294d28
+  parent: null
+  released_at: '2026-07-16'

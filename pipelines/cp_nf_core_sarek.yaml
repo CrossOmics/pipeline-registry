@@ -1,0 +1,39 @@
+schema_version: 1
+id: cp_nf_core_sarek
+name: nf-core/sarek
+kind: workflow
+description: Analysis pipeline to detect germline or somatic variants (pre-processing, variant calling and annotation) from WGS / targeted sequencing
+domain: genomics
+modalities:
+- dna-seq
+- wgs
+- wes
+inputs:
+- fastq
+outputs:
+- bam
+- cram
+- vcf
+algorithms:
+- BWA-MEM
+- GATK
+- Strelka
+- DeepVariant
+status: active
+repositories:
+- url: https://github.com/nf-core/sarek
+  primary: true
+papers:
+- doi: 10.12688/f1000research.16665.2
+contributors:
+- name: nf-core
+  github: nf-core
+  role: maintainer
+versions:
+- id: cv_nf_core_sarek_1
+  kind: original
+  label: 3.11.0
+  repo: https://github.com/nf-core/sarek
+  commit: 6e9b164daa2a54c98f7dda538645d340c561ac24
+  parent: null
+  released_at: '2026-10-26'

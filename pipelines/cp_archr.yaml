@@ -1,0 +1,35 @@
+schema_version: 1
+id: cp_archr
+name: ArchR
+kind: tool
+description: 'ArchR : Analysis of Regulatory Chromatin in R (www.ArchRProject.com)'
+domain: epigenomics
+modalities:
+- scatac-seq
+inputs:
+- bed
+outputs:
+- rds
+algorithms:
+- iterative LSI
+- MACS2
+- chromVAR
+status: active
+repositories:
+- url: https://github.com/GreenleafLab/ArchR
+  primary: true
+papers:
+- doi: 10.1038/s41588-021-00790-6
+  title: ArchR is a scalable software package for integrative single-cell chromatin accessibility analysis
+contributors:
+- name: GreenleafLab
+  github: GreenleafLab
+  role: maintainer
+versions:
+- id: cv_archr_1
+  kind: original
+  label: v1.0.3
+  repo: https://github.com/GreenleafLab/ArchR
+  commit: eda96f593dc5b57c9f23fcc00419e6f74cf66e55
+  parent: null
+  released_at: '2025-02-07'

@@ -1,0 +1,36 @@
+schema_version: 1
+id: cp_gatk_warp
+name: WARP (GATK best practices)
+kind: workflow
+description: Warp Analysis Research Pipelines
+domain: genomics
+modalities:
+- wgs
+- wes
+inputs:
+- fastq
+- bam
+outputs:
+- vcf
+algorithms:
+- BWA-MEM
+- GATK HaplotypeCaller
+status: active
+repositories:
+- url: https://github.com/broadinstitute/warp
+  primary: true
+papers:
+- doi: 10.1002/0471250953.bi1110s43
+  title: 'From FastQ Data to High‐Confidence Variant Calls: The Genome Analysis Toolkit Best Practices Pipeline'
+contributors:
+- name: broadinstitute
+  github: broadinstitute
+  role: maintainer
+versions:
+- id: cv_gatk_warp_1
+  kind: original
+  label: Multiome_v8.0.0
+  repo: https://github.com/broadinstitute/warp
+  commit: 80345efb74af5c758e2a7e60585f2bb7f12be33e
+  parent: null
+  released_at: '2026-10-30'

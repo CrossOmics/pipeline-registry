@@ -1,0 +1,34 @@
+schema_version: 1
+id: cp_snakemake_rna_seq_star_deseq2
+name: rna-seq-star-deseq2 (Snakemake)
+kind: workflow
+description: RNA-seq workflow using STAR and DESeq2
+domain: transcriptomics
+modalities:
+- bulk-rna-seq
+inputs:
+- fastq
+outputs:
+- counts-tsv
+algorithms:
+- STAR
+- DESeq2
+status: active
+repositories:
+- url: https://github.com/snakemake-workflows/rna-seq-star-deseq2
+  primary: true
+papers:
+- doi: 10.12688/f1000research.29032.2
+  title: Sustainable data analysis with Snakemake
+contributors:
+- name: snakemake-workflows
+  github: snakemake-workflows
+  role: maintainer
+versions:
+- id: cv_snakemake_rna_seq_star_deseq2_1
+  kind: original
+  label: v3.1.2
+  repo: https://github.com/snakemake-workflows/rna-seq-star-deseq2
+  commit: b9617cfe8945b5747a0e93ef3b94833807c844c7
+  parent: null
+  released_at: '2026-10-07'

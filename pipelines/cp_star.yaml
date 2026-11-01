@@ -1,0 +1,45 @@
+schema_version: 1
+id: cp_star
+name: STAR
+kind: tool
+description: RNA-seq aligner
+domain: transcriptomics
+modalities:
+- bulk-rna-seq
+- scrna-seq
+inputs:
+- fastq
+outputs:
+- bam
+- mtx
+algorithms:
+- suffix array
+- STARsolo
+status: active
+repositories:
+- url: https://github.com/alexdobin/STAR
+  primary: true
+papers:
+- doi: 10.1093/bioinformatics/bts635
+  title: 'STAR: ultrafast universal RNA-seq aligner'
+- doi: 10.1101/2021.05.05.442755
+  title: 'STARsolo: accurate, fast and versatile mapping/quantification of single-cell and single-nucleus RNA-seq data'
+contributors:
+- name: alexdobin
+  github: alexdobin
+  role: maintainer
+versions:
+- id: cv_star_1
+  kind: original
+  label: 2.7.11a
+  repo: https://github.com/alexdobin/STAR
+  commit: 79affaae7d5e70221287762eab4e40679fad87f7
+  parent: null
+  released_at: '2023-08-15'
+- id: cv_star_2
+  kind: original
+  label: 2.7.11b
+  repo: https://github.com/alexdobin/STAR
+  commit: b1edc1208d91a53bf40ebae8669f71d50b994851
+  parent: cv_star_1
+  released_at: '2024-01-25'

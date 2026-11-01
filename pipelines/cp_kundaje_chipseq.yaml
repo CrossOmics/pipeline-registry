@@ -1,0 +1,35 @@
+schema_version: 1
+id: cp_kundaje_chipseq
+name: Kundaje lab ChIP-seq pipeline
+kind: workflow
+description: AQUAS TF and histone ChIP-seq pipeline
+domain: epigenomics
+modalities:
+- chip-seq
+inputs:
+- fastq
+outputs:
+- bam
+- bed
+- bigwig
+algorithms:
+- BWA
+- MACS2
+- SPP
+- IDR
+status: deprecated
+repositories:
+- url: https://github.com/kundajelab/chipseq_pipeline
+  primary: true
+contributors:
+- name: kundajelab
+  github: kundajelab
+  role: maintainer
+versions:
+- id: cv_kundaje_chipseq_1
+  kind: original
+  label: '2019-01-03'
+  repo: https://github.com/kundajelab/chipseq_pipeline
+  commit: 562c8ed56310032e002d72ef1459d4f000e20193
+  parent: null
+  released_at: '2019-01-03'
