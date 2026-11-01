@@ -1,3 +1,4 @@
+from registry_tools.ranking_page import write_pages
 import shutil
 
 from registry_tools.index import build_index, write_dist
@@ -121,6 +122,7 @@ def _build(args: argparse.Namespace) -> int:
     index = build_index(load_registry(args.root), metrics, args.registry_commit, now,
                         vocab=load_vocab(args.root / "schema" / "vocab.yaml"))
     digest = write_dist(index, args.out)
+    write_pages(index, args.out)
     shutil.copy(args.root / SCHEMA_FILE, args.out / "pipeline.schema.json")
     print(f"index.json {digest} ({len(index['pipelines'])} pipelines)")
     return 0

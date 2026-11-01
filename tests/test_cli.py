@@ -59,6 +59,7 @@ def test_build_writes_dist_without_metrics(tmp_path, capsys):
                  "--registry-commit", "a" * 40]) == 0
     assert (out / "index.json").exists() and (out / "index.json.sha256").exists()
     assert (out / "pipeline.schema.json").exists()
+    assert (out / "ranking" / "index.html").exists() and (out / "index.html").exists()
 
 
 def test_build_refuses_an_invalid_registry(tmp_path):
