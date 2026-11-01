@@ -1,0 +1,510 @@
+{
+  "$defs": {
+    "moved": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 64,
+          "minLength": 4,
+          "pattern": "^cp_[a-z0-9]+(_[a-z0-9]+)*$",
+          "type": "string"
+        },
+        "moved_to": {
+          "maxLength": 64,
+          "minLength": 4,
+          "pattern": "^cp_[a-z0-9]+(_[a-z0-9]+)*$",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "moved_to"
+      ],
+      "type": "object"
+    },
+    "pipeline": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithms": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "contributors": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "github": {
+                "pattern": "^[A-Za-z0-9-]{1,39}$",
+                "type": "string"
+              },
+              "name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "orcid": {
+                "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$",
+                "type": "string"
+              },
+              "role": {
+                "enum": [
+                  "creator",
+                  "author",
+                  "maintainer",
+                  "developer"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "role"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "description": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "domain": {
+          "enum": [
+            "transcriptomics",
+            "epigenomics",
+            "genomics",
+            "proteomics",
+            "metagenomics",
+            "multi-omics",
+            "imaging"
+          ]
+        },
+        "id": {
+          "maxLength": 64,
+          "minLength": 4,
+          "pattern": "^cp_[a-z0-9]+(_[a-z0-9]+)*$",
+          "type": "string"
+        },
+        "inputs": {
+          "items": {
+            "enum": [
+              "fastq",
+              "bam",
+              "cram",
+              "vcf",
+              "h5ad",
+              "mtx",
+              "loom",
+              "rds",
+              "bed",
+              "bigwig",
+              "counts-tsv",
+              "fasta",
+              "gtf"
+            ]
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "keywords": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "enum": [
+            "tool",
+            "workflow"
+          ]
+        },
+        "modalities": {
+          "items": {
+            "enum": [
+              "scrna-seq",
+              "bulk-rna-seq",
+              "atac-seq",
+              "chip-seq",
+              "dna-seq",
+              "wgs",
+              "wes",
+              "scatac-seq",
+              "spatial",
+              "cite-seq",
+              "methylation",
+              "hi-c"
+            ]
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "name": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "outputs": {
+          "items": {
+            "enum": [
+              "fastq",
+              "bam",
+              "cram",
+              "vcf",
+              "h5ad",
+              "mtx",
+              "loom",
+              "rds",
+              "bed",
+              "bigwig",
+              "counts-tsv",
+              "fasta",
+              "gtf"
+            ]
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "papers": {
+          "items": {
+            "additionalProperties": false,
+            "anyOf": [
+              {
+                "required": [
+                  "doi"
+                ]
+              },
+              {
+                "required": [
+                  "url"
+                ]
+              }
+            ],
+            "properties": {
+              "doi": {
+                "minLength": 3,
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "url": {
+                "pattern": "^https?://",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "repositories": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "primary": {
+                "type": "boolean"
+              },
+              "url": {
+                "pattern": "^https?://",
+                "type": "string"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "status": {
+          "enum": [
+            "active",
+            "stable",
+            "deprecated",
+            "archived"
+          ]
+        },
+        "versions": {
+          "items": {
+            "additionalProperties": false,
+            "else": {
+              "not": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "test_dataset"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "improvement_effect"
+                    ]
+                  }
+                ]
+              }
+            },
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "optimization"
+                }
+              },
+              "required": [
+                "kind"
+              ]
+            },
+            "properties": {
+              "commit": {
+                "pattern": "^[0-9a-f]{40}$",
+                "type": "string"
+              },
+              "contributors": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "github": {
+                      "pattern": "^[A-Za-z0-9-]{1,39}$",
+                      "type": "string"
+                    },
+                    "name": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "orcid": {
+                      "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$",
+                      "type": "string"
+                    },
+                    "role": {
+                      "enum": [
+                        "creator",
+                        "author",
+                        "maintainer",
+                        "developer"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "role"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "gardener_package": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "digest": {
+                        "type": "string"
+                      },
+                      "ref": {
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "ref",
+                      "digest"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "id": {
+                "maxLength": 80,
+                "minLength": 4,
+                "pattern": "^cv_[a-z0-9]+(_[a-z0-9]+)*$",
+                "type": "string"
+              },
+              "improvement": {
+                "maxLength": 4000,
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "improvement_effect": {
+                "additionalProperties": false,
+                "anyOf": [
+                  {
+                    "required": [
+                      "summary"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "metrics"
+                    ]
+                  }
+                ],
+                "properties": {
+                  "metrics": {
+                    "items": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "baseline": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "pattern": "^[a-z0-9_]+$",
+                          "type": "string"
+                        },
+                        "unit": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "value"
+                      ],
+                      "type": "object"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "summary": {
+                    "maxLength": 2000,
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "kind": {
+                "enum": [
+                  "original",
+                  "optimization"
+                ]
+              },
+              "label": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "parent": {
+                "pattern": "^cv_[a-z0-9]+(_[a-z0-9]+)*$",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "released_at": {
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "type": "string"
+              },
+              "repo": {
+                "pattern": "^https?://",
+                "type": "string"
+              },
+              "test_dataset": {
+                "additionalProperties": false,
+                "anyOf": [
+                  {
+                    "required": [
+                      "accession"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "url"
+                    ]
+                  }
+                ],
+                "properties": {
+                  "accession": {
+                    "pattern": "^(SRR|ERR|DRR|SRX|ERX|GSE|GSM|PRJNA|PRJEB|E-MTAB-)[0-9A-Z-]+$",
+                    "type": "string"
+                  },
+                  "description": {
+                    "maxLength": 2000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": "string"
+                  },
+                  "url": {
+                    "pattern": "^https?://",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "description"
+                ],
+                "type": "object"
+              },
+              "withdrawn": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "kind",
+              "label",
+              "repo",
+              "commit",
+              "parent"
+            ],
+            "then": {
+              "properties": {
+                "improvement": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "improvement"
+              ]
+            },
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "name",
+        "kind",
+        "description",
+        "domain",
+        "status",
+        "versions"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://crossomics.github.io/pipeline-registry/pipeline.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "else": {
+    "$ref": "#/$defs/pipeline"
+  },
+  "if": {
+    "required": [
+      "moved_to"
+    ],
+    "type": "object"
+  },
+  "then": {
+    "$ref": "#/$defs/moved"
+  },
+  "title": "Community Pipeline"
+}

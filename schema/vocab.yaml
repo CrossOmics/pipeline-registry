@@ -1,0 +1,6 @@
+# Controlled vocabularies (SPEC-02 §2.4). Lowercase, kebab-case. Add a value by PR, then run
+# `uv run python -m registry_tools gen-schema` and commit the regenerated schema.
+domain: [transcriptomics, epigenomics, genomics, proteomics, metagenomics, multi-omics, imaging]
+modalities: [scrna-seq, bulk-rna-seq, atac-seq, chip-seq, dna-seq, wgs, wes, scatac-seq, spatial, cite-seq, methylation, hi-c]
+inputs: [fastq, bam, cram, vcf, h5ad, mtx, loom, rds, bed, bigwig, counts-tsv, fasta, gtf]
+outputs: [fastq, bam, cram, vcf, h5ad, mtx, loom, rds, bed, bigwig, counts-tsv, fasta, gtf]
