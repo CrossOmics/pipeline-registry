@@ -1,3 +1,13 @@
+import json
+import os
+from datetime import datetime, timezone
+
+import httpx
+
+from registry_tools import CITATION_WINDOW_YEARS
+from registry_tools.citations import CitationCollector, OpenAlexClient, SemanticScholarClient, window_years
+from registry_tools.collect import collect_metrics
+from registry_tools.github import GitHubCollector
 """`python -m registry_tools validate | fmt | gen-schema | collect | build` (SPEC-02 §3.6)."""
 
 import argparse
@@ -65,6 +75,34 @@ def _gen_schema(args: argparse.Namespace) -> int:
     return 0
 
 
+def _write_json(path: Path, data) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=2, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def _collect(args: argparse.Namespace) -> int:
+    registry = load_registry(args.root)
+    latest = args.metrics_dir / "latest.json"
+    previous = json.loads(latest.read_text(encoding="utf-8")) if latest.exists() else None
+    now = datetime.now(timezone.utc).replace(microsecond=0)
+    headers = {"User-Agent": "crossomics-pipeline-registry"}
+    with httpx.Client(timeout=30.0, follow_redirects=True, headers=headers) as http:
+        github = GitHubCollector(http, os.environ.get("GITHUB_TOKEN"))
+        citations = CitationCollector(
+            OpenAlexClient(http, os.environ.get("REGISTRY_CONTACT_EMAIL") or None),
+            SemanticScholarClient(http, os.environ.get("SEMANTIC_SCHOLAR_API_KEY") or None),
+            window_years(now.date(), CITATION_WINDOW_YEARS),
+        )
+        metrics, failed, attempted = collect_metrics(registry, previous, github, citations, now)
+    if attempted and failed == attempted:
+        print(f"every one of {attempted} pipeline(s) failed to collect; keeping the previous metrics")
+        return 1
+    _write_json(latest, metrics)
+    _write_json(args.metrics_dir / "history" / f"{now.date().isoformat()}.json", metrics)
+    print(f"collected {attempted - failed}/{attempted} pipeline(s)")
+    return 0
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="registry_tools")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -77,6 +115,9 @@ def _parser() -> argparse.ArgumentParser:
     fmt.add_argument("--check", action="store_true", help="only list files that are not canonical; exit 1 if any")
     gen_schema = sub.add_parser("gen-schema", help="regenerate schema/pipeline.schema.json from vocab.yaml")
     gen_schema.add_argument("--root", type=Path, default=Path("."))
+    collect = sub.add_parser("collect", help="collect GitHub activity and citations")
+    collect.add_argument("--root", type=Path, default=Path("."))
+    collect.add_argument("--metrics-dir", type=Path, required=True)
     return parser
 
 
