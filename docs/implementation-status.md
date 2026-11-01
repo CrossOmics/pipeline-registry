@@ -27,7 +27,13 @@ activity to the normalized primary repository. Existing metrics without this
 identity are unavailable until recollected.
 
 Formatting, generated schema consistency, all 13 registry rules and index/page
-builds are checked locally. Actual GitHub Actions execution, Pages configuration,
+builds passed locally. The final live collection succeeded for 25/25 pipelines,
+with no stale entries, at `2026-11-01T02:49:14Z`. The generated index has 20 ranked
+pipelines and 5 explicitly excluded entries. Gardener's strict `RegistryIndex`
+model accepts the full index, its SHA-256 matches the companion file, and both
+canonical YAML goldens match Gardener byte for byte. The local browser smoke check
+confirmed the real rankings, last GitHub update, all three citation-year columns
+including YTD, exclusions and method explanation. Actual GitHub Actions execution, Pages configuration,
 branch protection and live publication require the publication step below.
 
 ## Decisions and costs
@@ -68,3 +74,12 @@ The contact email variable is optional and remains unset until the owner supplie
 an address. The optional Semantic Scholar key also remains unset; if wanted, the
 owner enters it directly with `gh secret set`. No credentials are stored here.
 The pending package is excluded from this initial publication scope.
+
+## Prepared local artifacts
+
+- Verified metric snapshot: local branch `codex/community-registry-data`, commit
+  `8b4f9268201ad4763240bc200b021ccf9e7ac125`, with `metrics/latest.json` and dated history.
+- Generated Pages artifacts are in ignored `dist/`; the public URLs in the README
+  are intended destinations and are not claimed to be deployed.
+- All repository credentials used for read-only collection stayed in process
+  memory. No token or optional API key is part of either branch.
