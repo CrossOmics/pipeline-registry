@@ -62,6 +62,8 @@ def validate_registry(registry: Registry, schema: Dict[str, Any], base: Optional
                                 "not in canonical form; run `uv run python -m registry_tools fmt`"))
         valid.append((label, registry_file.doc))
     issues += _integrity(valid)
+    if base is not None:
+        issues += _append_only(registry, base)
     return issues
 
 _DIGEST = re.compile(r"sha256:[0-9a-f]{64}")
@@ -185,4 +187,38 @@ def _cycles(versions: VersionIndex) -> List[Issue]:
         label, pointer, _ = versions[first]
         ordered = cycle[cycle.index(first):] + cycle[:cycle.index(first)]
         issues.append(Issue(label, f"{pointer}/parent", "R4", "lineage cycle: " + " -> ".join(ordered + [first])))
+    return issues
+
+def _dict_docs(registry: Registry) -> List[Tuple[str, Dict[str, Any]]]:
+    return [(_label(f.path), f.doc) for f in registry.files if f.error is None and isinstance(f.doc, dict)]
+
+
+def _append_only(registry: Registry, base: Registry) -> List[Issue]:
+    """R8: merged ids never disappear; a version's repo, commit, parent and kind never change; no un-withdrawing.
+    Reads every parsed head file, even one failing R1, so a typo does not also report its versions as removed."""
+    issues: List[Issue] = []
+    head_ids = {doc.get("id") for _, doc in _dict_docs(registry)}
+    head_versions: VersionIndex = {}
+    for label, doc in _dict_docs(registry):
+        for index, version in enumerate(doc.get("versions") or []):
+            if isinstance(version, dict) and "id" in version:
+                head_versions[version["id"]] = (label, f"/versions/{index}", version)
+    for label, doc in _dict_docs(base):
+        if doc.get("id") not in head_ids:
+            issues.append(Issue(label, "/id", "R8",
+                                f"pipeline {doc.get('id')!r} was removed; ids are permanent (rename with moved_to)"))
+        for old in doc.get("versions") or []:
+            found = head_versions.get(old.get("id"))
+            if found is None:
+                issues.append(Issue(label, "/versions", "R8",
+                                    f"version {old.get('id')!r} was removed; mark it withdrawn instead"))
+                continue
+            head_label, pointer, new = found
+            for name in ("repo", "commit", "parent", "kind"):
+                if new.get(name) != old.get(name):
+                    issues.append(Issue(head_label, f"{pointer}/{name}", "R8",
+                                        f"{name} of merged version {old['id']!r} cannot change"))
+            if old.get("withdrawn") and not new.get("withdrawn"):
+                issues.append(Issue(head_label, f"{pointer}/withdrawn", "R8",
+                                    f"version {old['id']!r} cannot be un-withdrawn"))
     return issues

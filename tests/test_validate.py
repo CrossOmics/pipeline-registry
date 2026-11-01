@@ -217,3 +217,50 @@ def test_r13_files_must_be_canonical(tmp_path):
     assert [(issue.file, issue.rule) for issue in issues] == [
         ("pipelines/cp_alpha.yaml", "R13"), ("pipelines/cp_beta.yaml", "R13")]
     assert "registry_tools fmt" in issues[0].message
+def _base_and_head(tmp_path, base_docs, head_docs):
+    base, head = tmp_path / "base", tmp_path / "head"
+    write_registry(base, *base_docs)
+    write_registry(head, *head_docs)
+    return head, base
+
+
+def test_r8_appending_a_version_and_withdrawing_is_allowed(tmp_path):
+    head, base = _base_and_head(
+        tmp_path, [pipeline_doc("cp_alpha")],
+        [pipeline_doc("cp_alpha", versions=[version_doc("cv_alpha_1", withdrawn=True),
+                                            version_doc("cv_alpha_2", "b", parent="cv_alpha_1")])])
+    assert _issues(head, base) == []
+
+
+def test_r8_rename_with_moved_to_keeps_ids(tmp_path):
+    head, base = _base_and_head(
+        tmp_path, [pipeline_doc("cp_alpha")],
+        [{"schema_version": 1, "id": "cp_alpha", "moved_to": "cp_alpha_two"},
+         pipeline_doc("cp_alpha_two", versions=[version_doc("cv_alpha_1")])])
+    assert _issues(head, base) == []
+
+
+def test_r8_removed_pipeline_and_version(tmp_path):
+    head, base = _base_and_head(
+        tmp_path,
+        [pipeline_doc("cp_alpha", versions=[version_doc("cv_alpha_1"),
+                                            version_doc("cv_alpha_2", "b", parent="cv_alpha_1")]),
+         pipeline_doc("cp_beta", versions=[version_doc("cv_beta_1", "c")])],
+        [pipeline_doc("cp_alpha", versions=[version_doc("cv_alpha_1")])])
+    messages = [issue.message for issue in _issues(head, base)]
+    assert any("cp_beta" in m for m in messages)
+    assert any("cv_alpha_2" in m for m in messages)
+    assert {issue.rule for issue in _issues(head, base)} == {"R8"}
+
+
+def test_r8_changed_commit_parent_repo_kind_and_unwithdraw(tmp_path):
+    head, base = _base_and_head(
+        tmp_path,
+        [pipeline_doc("cp_alpha", versions=[version_doc("cv_alpha_1", withdrawn=True),
+                                            version_doc("cv_alpha_2", "b", parent="cv_alpha_1")])],
+        [pipeline_doc("cp_alpha", versions=[version_doc("cv_alpha_1", "e"),
+                                            version_doc("cv_alpha_2", "b", parent=None, kind="optimization",
+                                                        repo="https://github.com/org/fork")])])
+    pointers = sorted(issue.pointer for issue in _issues(head, base) if issue.rule == "R8")
+    assert pointers == ["/versions/0/commit", "/versions/0/withdrawn",
+                        "/versions/1/kind", "/versions/1/parent", "/versions/1/repo"]
