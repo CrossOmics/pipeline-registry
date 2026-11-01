@@ -5,6 +5,8 @@ from html import escape
 from pathlib import Path
 from typing import Any, Dict, List
 
+from registry_tools.model import primary_repository
+
 REPOSITORY_URL = "https://github.com/CrossOmics/pipeline-registry"
 COMMUNITY_UPDATES_URL = "https://github.com/BioCode-Commons"
 TITLE = "Pipelines that may need community attention"
@@ -41,22 +43,34 @@ def _badges(item: Dict[str, Any]) -> str:
     return "".join(f'<span class="badge">{name}</span>' for name in names)
 
 
+def _maintenance(item: Dict[str, Any]) -> str:
+    record = item.get("biocode_maintenance")
+    if not record:
+        return "Not registered"
+    if record["status"] == "planned":
+        return "Planned"
+    return f'<a href="{escape(record["repository"], quote=True)}">Available</a>'
+
+
 def _table(items: List[Dict[str, Any]], years: List[int]) -> str:
     if not items:
         return "<p>None.</p>"
     labels = [f"{year} (YTD)" if year == years[-1] else str(year) for year in years]
     head = ('<tr><th class="n">#</th><th>Pipeline</th><th>Kind</th><th class="n">Risk score</th>'
-            "<th>Last GitHub update</th>" + "".join(f'<th class="n">Citations {label}</th>' for label in labels)
+            "<th>Original GitHub update</th><th>BioCode maintenance</th>" + "".join(f'<th class="n">Citations {label}</th>' for label in labels)
             + "<th>Commits / releases / merged PRs / closed issues</th></tr>")
     rows = []
     for rank, item in enumerate(items, start=1):
         metrics, activity = item["metrics"], item["metrics"]["activity"]
         by_year = metrics.get("citations_by_year") or {}
         link = f"{REPOSITORY_URL}/blob/main/pipelines/{item['id']}.yaml"
+        date = escape((activity.get("last_commit_at") or "")[:10]) or "—"
+        upstream = primary_repository(item)
+        updated = f'<a href="{escape(upstream, quote=True)}">{date}</a>' if upstream else date
         rows.append(
             f'<tr><td class="n">{rank}</td><td><a href="{escape(link)}">{escape(item["name"])}</a>{_badges(item)}</td>'
             f'<td>{escape(item["kind"])}</td><td class="n">{metrics["priority"]:.4f}</td>'
-            f'<td>{escape((activity.get("last_commit_at") or "")[:10]) or "—"}</td>'
+            f'<td>{updated}</td><td>{_maintenance(item)}</td>'
             + "".join(f'<td class="n">{int(by_year.get(str(year), 0))}</td>' for year in years)
             + f'<td>{activity["commits"]} / {activity["releases"]} / {activity["merged_prs"]} / '
               f'{activity["closed_issues"]}</td></tr>')
@@ -73,10 +87,13 @@ def _method(index: Dict[str, Any]) -> str:
         f"<li>CitationScore uses the citations of the pipeline's papers in {years[0]}–{years[-1]} "
         f"({years[-1]} to date), from OpenAlex, or Semantic Scholar when OpenAlex has no record. "
         "A paper listed twice counts once.</li>"
-        f"<li>ActivityScore uses the primary GitHub repository over the last {days} days: commits + 5 × releases "
+        f"<li>ActivityScore uses the original author's primary GitHub repository over the last {days} days: commits + 5 × releases "
         "+ 2 × merged PRs + closed issues. An archived repository counts as 0.</li>"
         "<li>Pipelines without a paper with citation data, or without a readable GitHub repository, are not "
-        "ranked, and neither are deprecated ones.</li></ul>"
+        "ranked, and neither are deprecated ones.</li>"
+        "<li>BioCode maintenance is registered separately: Available links to a published replacement; Planned "
+        "is not yet available; Not registered means no replacement has been recorded. "
+        "A replacement's activity never changes the original repository's score.</li></ul>"
     )
 
 

@@ -14,6 +14,8 @@ STATUSES = ["active", "stable", "deprecated", "archived"]
 PIPELINE_KINDS = ["tool", "workflow"]
 VERSION_KINDS = ["original", "optimization"]
 _URL = {"type": "string", "pattern": "^https?://"}
+BIOCODE_REPOSITORY = (r"^https://github\.com/[Bb][Ii][Oo][Cc][Oo][Dd][Ee]-"
+                     r"[Cc][Oo][Mm][Mm][Oo][Nn][Ss]/[A-Za-z0-9_-][A-Za-z0-9_.-]*/?$")
 
 
 def load_vocab(path: Path) -> Dict[str, List[str]]:
@@ -43,6 +45,15 @@ def build_schema(vocab: Dict[str, List[str]]) -> Dict[str, Any]:
     repository = {
         "type": "object", "additionalProperties": False, "required": ["url"],
         "properties": {"url": _URL, "primary": {"type": "boolean"}},
+    }
+    biocode_maintenance = {
+        "type": "object", "additionalProperties": False, "required": ["status"],
+        "properties": {
+            "status": {"enum": ["planned", "available"]},
+            "repository": {"type": "string", "pattern": BIOCODE_REPOSITORY},
+        },
+        "if": {"properties": {"status": {"const": "available"}}},
+        "then": {"required": ["repository"]},
     }
     package = {
         "type": "object", "additionalProperties": False, "required": ["ref", "digest"],
@@ -115,6 +126,7 @@ def build_schema(vocab: Dict[str, List[str]]) -> Dict[str, Any]:
             "keywords": text_list,
             "status": {"enum": STATUSES},
             "repositories": {"type": "array", "items": repository},
+            "biocode_maintenance": biocode_maintenance,
             "papers": {"type": "array", "items": paper},
             "contributors": {"type": "array", "items": contributor},
             "versions": {"type": "array", "minItems": 1, "items": version},

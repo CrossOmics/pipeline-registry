@@ -1,8 +1,9 @@
 # Community registry implementation status
 
 Implementation branch: `codex/community-registry`, pushed with explicit owner
-authorization. Draft [PR #1](https://github.com/CrossOmics/pipeline-registry/pull/1)
-targets `main`. Repository settings and Pages deployment remain unchanged.
+authorization. [PR #1](https://github.com/CrossOmics/pipeline-registry/pull/1)
+targets `main`; it was created as a draft and is now ready for review. Its review
+state was left as found. Repository settings and Pages deployment remain unchanged.
 
 Tasks 1–11 are implemented. Task 12 has 25 real Original pipeline files,
 verified release commits and DOI evidence, STAR upstream release history, and
@@ -103,3 +104,22 @@ pass. This content change has not been deployed.
 Draft PR #1 is open and its validation workflow passed. This proves branch push,
 PR creation and GitHub CI, not Community Register submission through Gardener.
 No merge, `data` branch push, Pages activation or protection change was made.
+
+## Original activity and BioCode column — 2026-11-01
+
+At the owner's request, ranking now names the source as Original GitHub update
+and adds BioCode maintenance, independently of the existing risk-score ordering.
+Only the Original's primary repository feeds collection and scoring; a replacement
+does not make the upstream appear active. Optional `biocode_maintenance` metadata
+is carried through the index and distinguishes Available (actual BioCode repository
+link), Planned and Not registered. URL/schema checks reject other owners,
+organization-only URLs and `.github`. Both canonical serializers keep the metadata
+before versions, so optimization appends remain pure appends.
+
+The public org API currently exposes only `.github`; STAR is therefore recorded as
+Planned, based on the owner's announcement, without inventing a published URL.
+Other entries remain Not registered. MAFFT is not yet one of the seeded Originals.
+All 112 registry tests and validation of all 25 files pass. The rebuilt index and
+hash are accepted by Gardener; cross-repository canonical serialization and the
+isolated real ranking HTTP endpoint were checked. Browser preview approval was
+declined, so no new visual smoke test is claimed. Nothing has been deployed.

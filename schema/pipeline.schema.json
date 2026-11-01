@@ -36,6 +36,37 @@
           },
           "type": "array"
         },
+        "biocode_maintenance": {
+          "additionalProperties": false,
+          "if": {
+            "properties": {
+              "status": {
+                "const": "available"
+              }
+            }
+          },
+          "properties": {
+            "repository": {
+              "pattern": "^https://github\\.com/[Bb][Ii][Oo][Cc][Oo][Dd][Ee]-[Cc][Oo][Mm][Mm][Oo][Nn][Ss]/[A-Za-z0-9_-][A-Za-z0-9_.-]*/?$",
+              "type": "string"
+            },
+            "status": {
+              "enum": [
+                "planned",
+                "available"
+              ]
+            }
+          },
+          "required": [
+            "status"
+          ],
+          "then": {
+            "required": [
+              "repository"
+            ]
+          },
+          "type": "object"
+        },
         "contributors": {
           "items": {
             "additionalProperties": false,

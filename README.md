@@ -37,6 +37,28 @@ the pull request for you with your GitHub account. To do it by hand:
 Adding a vocabulary value: edit `schema/vocab.yaml`, run `uv run python -m registry_tools gen-schema`,
 commit both.
 
+## Original activity and BioCode maintenance
+
+The primary repository in each Original's `repositories` list identifies the
+original author's upstream. All GitHub activity, last-update dates and risk scores
+use that repository. An Optimization or BioCode replacement does not replace it.
+
+An Original may separately register `biocode_maintenance`. For work announced but
+not published yet:
+
+```yaml
+biocode_maintenance:
+  status: planned
+```
+
+After a maintainer verifies the published replacement repository, change `status`
+to `available` and add `repository` with its actual HTTPS repository URL under
+`https://github.com/BioCode-Commons/`. The schema rejects other owners, the
+organization profile, `.github`, queries and subpages. Validation checks URL shape
+and namespace, not current repository existence or continuing maintenance.
+The public page and Gardener show Available (with link), Planned, or Not registered
+when the field is absent. Not registered is not a claim that no alternative exists.
+
 ## Automation
 
 - `validate.yml` (pull requests): rules R1-R13, including the append-only rule against the base branch.

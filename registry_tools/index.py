@@ -124,6 +124,8 @@ def build_index(registry: Registry, metrics: Optional[Dict[str, Any]], registry_
                                  activity["raw"] if activity else None, reason))
         item = {name: pipeline[name] for name in _PIPELINE_FIELDS}
         item.update({name: list(pipeline.get(name) or []) for name in _LIST_FIELDS})
+        if pipeline.get("biocode_maintenance"):
+            item["biocode_maintenance"] = dict(pipeline["biocode_maintenance"])
         item["papers"] = papers
         item["contributors"] = contributors.refs(pipeline.get("contributors"))
         item["versions"] = [_version(version, contributors) for version in pipeline["versions"]]

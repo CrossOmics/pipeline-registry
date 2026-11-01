@@ -21,13 +21,14 @@ _Loader.yaml_implicit_resolvers = {
 _DOI_PREFIXES = ("https://doi.org/", "http://doi.org/", "https://dx.doi.org/", "http://dx.doi.org/", "doi:")
 
 PIPELINE_KEYS = ("schema_version", "id", "name", "kind", "description", "domain", "modalities", "inputs",
-                 "outputs", "algorithms", "keywords", "status", "repositories", "papers", "contributors", "versions")
+                 "outputs", "algorithms", "keywords", "status", "repositories", "biocode_maintenance", "papers", "contributors", "versions")
 MOVED_KEYS = ("schema_version", "id", "moved_to")
 VERSION_KEYS = ("id", "kind", "label", "repo", "commit", "parent", "released_at", "contributors", "improvement",
                 "test_dataset", "improvement_effect", "gardener_package", "withdrawn")
 _NESTED_KEYS = {
     "contributors": ("name", "github", "orcid", "role"),
     "repositories": ("url", "primary"),
+    "biocode_maintenance": ("status", "repository"),
     "papers": ("doi", "url", "title"),
     "gardener_package": ("ref", "digest"),
     "test_dataset": ("accession", "url", "sha256", "description"),
