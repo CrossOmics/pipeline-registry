@@ -23,10 +23,10 @@ def _cited(recent, work_id):
 def _metrics():
     return {"collected_at": "2026-11-02T03:05:10Z", "config": {}, "pipelines": {
         "cp_alpha": {"papers": {"doi:10.1000/alpha": _cited(100, "W1"), "doi:10.1000/alpha2": _cited(100, "W1")},
-                     "activity": _activity(1), "activity_reason": None,
+                     "activity": _activity(1), "activity_reason": None, "activity_repository": "https://github.com/org/alpha",
                      "collected_at": "2026-11-02T03:05:10Z", "stale_since": None, "error": None},
         "cp_beta": {"papers": {"doi:10.1000/beta": _cited(10, "W2")}, "activity": _activity(50),
-                    "activity_reason": None, "collected_at": "2026-11-02T03:05:10Z",
+                    "activity_reason": None, "activity_repository": "https://github.com/org/beta", "collected_at": "2026-11-02T03:05:10Z",
                     "stale_since": "2026-10-26T03:00:00Z", "error": None},
     }}
 

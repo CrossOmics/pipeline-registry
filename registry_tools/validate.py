@@ -1,3 +1,6 @@
+"""Registry checks R1–R13 (SPEC-02 §2.3)."""
+
+import math
 import re
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Set, Tuple
@@ -5,14 +8,6 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 from jsonschema import Draft202012Validator
 
 from registry_tools.model import Registry, dump_pipeline, normalize_doi, normalize_repo_url
-"""Registry checks R1–R13 (SPEC-02 §2.3)."""
-
-from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple
-
-from jsonschema import Draft202012Validator
-
-from registry_tools.model import Registry
 
 
 @dataclass(frozen=True)
@@ -40,6 +35,16 @@ def _pointer(parts) -> str:
     return "/" + "/".join(str(part) for part in parts) if parts else "/"
 
 
+def _nonfinite(label: str, value: Any, path=()) -> List[Issue]:
+    if isinstance(value, float) and not math.isfinite(value):
+        return [Issue(label, _pointer(path), "R1", "number must be finite")]
+    if isinstance(value, dict):
+        return [issue for key, item in value.items() for issue in _nonfinite(label, item, (*path, key))]
+    if isinstance(value, list):
+        return [issue for index, item in enumerate(value) for issue in _nonfinite(label, item, (*path, index))]
+    return []
+
+
 def validate_registry(registry: Registry, schema: Dict[str, Any], base: Optional[Registry] = None) -> List[Issue]:
     issues: List[Issue] = []
     validator = Draft202012Validator(schema)
@@ -51,7 +56,9 @@ def validate_registry(registry: Registry, schema: Dict[str, Any], base: Optional
             continue
         errors = sorted(validator.iter_errors(registry_file.doc), key=lambda e: [str(p) for p in e.absolute_path])
         issues += [Issue(label, _pointer(list(e.absolute_path)), "R1", e.message) for e in errors]
-        if errors:
+        numeric_issues = _nonfinite(label, registry_file.doc)
+        issues += numeric_issues
+        if errors or numeric_issues:
             continue
         if registry_file.doc["id"] != registry_file.stem:
             issues.append(Issue(label, "/id", "R1",

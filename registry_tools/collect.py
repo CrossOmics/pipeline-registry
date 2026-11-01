@@ -6,7 +6,7 @@ from typing import Any, Dict, Optional, Tuple
 
 from registry_tools import CONFIG
 from registry_tools.http import CollectError
-from registry_tools.model import Registry, iso, paper_key, primary_repository
+from registry_tools.model import Registry, iso, normalize_repo_url, paper_key, primary_repository
 
 
 def _collect_one(pipeline: Dict[str, Any], github, citations, now: datetime) -> Dict[str, Any]:
@@ -16,7 +16,8 @@ def _collect_one(pipeline: Dict[str, Any], github, citations, now: datetime) -> 
         activity, reason = None, "no_repo"
     else:
         activity, reason = github.collect(repository, now)
-    return {"papers": papers, "activity": activity, "activity_reason": reason}
+    return {"papers": papers, "activity": activity, "activity_reason": reason,
+            "activity_repository": normalize_repo_url(repository) if repository else None}
 
 
 def collect_metrics(registry: Registry, previous: Optional[Dict[str, Any]], github, citations,

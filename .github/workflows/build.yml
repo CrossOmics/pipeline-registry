@@ -23,9 +23,9 @@ jobs:
       - name: Fetch the last collected metrics
         run: |
           mkdir -p .metrics
-          if git fetch --depth=1 origin data; then
-            git show origin/data:metrics/latest.json > .metrics/latest.json || rm -f .metrics/latest.json
-          fi
+          git fetch --depth=1 origin refs/heads/data:refs/remotes/origin/data
+          git show origin/data:metrics/latest.json > .metrics/latest.json
+          test -s .metrics/latest.json
       - run: uv run python -m registry_tools build --metrics .metrics/latest.json --out dist --registry-commit "${{ github.sha }}"
       - uses: actions/upload-pages-artifact@v3
         with:

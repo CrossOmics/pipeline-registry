@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, List, Optional
 
 import httpx
 
-from registry_tools.http import request_json
+from registry_tools.http import checked_response, request_json, source_count
 from registry_tools.model import normalize_doi
 
 OPENALEX = "https://api.openalex.org"
@@ -68,10 +68,15 @@ class SemanticScholarClient:
                              {"fields": "year", "limit": min(PAGE_SIZE, CITATION_CAP - offset), "offset": offset})
             if not body:
                 break
-            years += [(item.get("citingPaper") or {}).get("year") for item in body.get("data") or []]
+            if not isinstance(body["data"], list):
+                raise ValueError("citation data must be an array")
+            years += [(item["citingPaper"] or {}).get("year") for item in body["data"]]
             if body.get("next") is None:
                 break
-            offset = int(body["next"])
+            next_offset = source_count(body["next"])
+            if next_offset <= offset:
+                raise ValueError("citation pagination must advance")
+            offset = next_offset
         return years[:CITATION_CAP]
 
 
@@ -79,6 +84,7 @@ class CitationCollector:
     def __init__(self, openalex: OpenAlexClient, semantic_scholar: SemanticScholarClient, years: List[int]):
         self.openalex, self.semantic_scholar, self.years = openalex, semantic_scholar, years
 
+    @checked_response
     def collect(self, paper: Dict[str, Any]) -> CitationResult:
         if paper.get("doi"):
             doi = normalize_doi(paper["doi"])
@@ -93,10 +99,15 @@ class CitationCollector:
 
     def _from_openalex(self, work: Dict[str, Any]) -> CitationResult:
         by_year = {str(year): 0 for year in self.years}
-        for entry in work.get("counts_by_year") or []:
-            if entry.get("year") in self.years:
-                by_year[str(entry["year"])] = int(entry["cited_by_count"])
-        return CitationResult("openalex", total=int(work.get("cited_by_count") or 0),
+        entries = work["counts_by_year"]
+        if not isinstance(entries, list):
+            raise ValueError("counts_by_year must be an array")
+        for entry in entries:
+            year = source_count(entry["year"])
+            count = source_count(entry["cited_by_count"])
+            if year in self.years:
+                by_year[str(year)] = count
+        return CitationResult("openalex", total=source_count(work["cited_by_count"]),
                               recent=sum(by_year.values()), by_year=by_year, work_id=work.get("id"))
 
     def _from_semantic_scholar(self, key: str) -> CitationResult:
@@ -107,5 +118,5 @@ class CitationCollector:
         for year in self.semantic_scholar.citation_years(paper["paperId"]):
             if year in self.years:
                 by_year[str(year)] += 1
-        return CitationResult("semantic_scholar", total=int(paper.get("citationCount") or 0),
+        return CitationResult("semantic_scholar", total=source_count(paper["citationCount"]),
                               recent=sum(by_year.values()), by_year=by_year, work_id=f"s2:{paper['paperId']}")

@@ -497,5 +497,40 @@
       "title": "Sustainable data analysis with Snakemake",
       "url": "https://doi.org/10.12688/f1000research.29032.2"
     }
+  ],
+  "lineage_evidence": [
+    {
+      "pipeline": "cp_bwa",
+      "version": "cv_bwa_3",
+      "baseline": "cv_bwa_1",
+      "source": "https://github.com/bwa-mem2/bwa-mem2/blob/v2.3/README.md",
+      "finding": "BWA-mem2 states its output matches original bwa-mem 0.7.17.",
+      "baseline_commit_source": "https://api.github.com/repos/lh3/bwa/commits/v0.7.17",
+      "baseline_commit": "9f26bfcc7780753129b60717ecab0ebba6f04b7c"
+    }
+  ],
+  "deferred_versions": [
+    {
+      "pipeline": "cp_scanpy",
+      "candidate": {
+        "id": "cv_scanpy_2",
+        "kind": "optimization",
+        "label": "v0.18.1",
+        "repo": "https://github.com/scverse/rapids-singlecell",
+        "commit": "ad9b8470baf9ee21d9f89ac16e25b43d13115e0a",
+        "parent": "cv_scanpy_1",
+        "released_at": "2026-10-12",
+        "contributors": [
+          {
+            "name": "scverse",
+            "github": "scverse",
+            "role": "developer"
+          }
+        ],
+        "improvement": "GPU (RAPIDS) implementations of Scanpy preprocessing, embedding and clustering functions on AnnData objects."
+      },
+      "reason": "scanpy>=1.10.0 is a compatibility minimum, not evidence of version-level ancestry; no verified parent release.",
+      "source": "https://github.com/scverse/rapids-singlecell/blob/v0.18.1/pyproject.toml"
+    }
   ]
 }

@@ -9,7 +9,7 @@ from typing import Any, Dict, List, Optional
 
 from registry_tools import CITATION_WINDOW_YEARS, CONFIG, SCHEMA_VERSION
 from registry_tools.citations import window_years
-from registry_tools.model import Registry, contributor_id, iso, normalize_doi, paper_key
+from registry_tools.model import Registry, contributor_id, github_owner_name, iso, normalize_doi, normalize_repo_url, paper_key, primary_repository
 from registry_tools.scoring import ScoreInput, score_all
 
 _PIPELINE_FIELDS = ("id", "name", "kind", "description", "domain", "status")
@@ -110,9 +110,18 @@ def build_index(registry: Registry, metrics: Optional[Dict[str, Any]], registry_
                   for paper in pipeline.get("papers") or []]
         by_year = _citations_by_year(papers, years)
         recent = sum(by_year.values()) if by_year is not None else None
+        repository = primary_repository(pipeline)
+        identity = normalize_repo_url(repository) if repository else None
+        reason = entry.get("activity_reason")
         activity = entry.get("activity")
+        if repository is None:
+            activity, reason = None, "no_repo"
+        elif github_owner_name(repository) is None:
+            activity, reason = None, "unsupported_host"
+        elif entry.get("activity_repository") != identity:
+            activity, reason = None, "repo_unreachable"
         inputs.append(ScoreInput(pid, pipeline["status"], len(papers), recent,
-                                 activity["raw"] if activity else None, entry.get("activity_reason")))
+                                 activity["raw"] if activity else None, reason))
         item = {name: pipeline[name] for name in _PIPELINE_FIELDS}
         item.update({name: list(pipeline.get(name) or []) for name in _LIST_FIELDS})
         item["papers"] = papers
@@ -138,7 +147,7 @@ def build_index(registry: Registry, metrics: Optional[Dict[str, Any]], registry_
 
 
 def serialize(index: Dict[str, Any]) -> bytes:
-    return json.dumps(index, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    return json.dumps(index, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False).encode("utf-8")
 
 
 def write_dist(index: Dict[str, Any], out_dir: Path) -> str:

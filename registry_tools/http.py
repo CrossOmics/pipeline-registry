@@ -1,6 +1,7 @@
 """JSON requests with retries for rate limits and server errors (SPEC-02 §3.2, §3.3)."""
 
 import time
+from functools import wraps
 from typing import Any, Callable, Optional
 
 import httpx
@@ -48,5 +49,30 @@ def request_json(http: httpx.Client, method: str, url: str, *, sleep: Callable[[
             continue
         if response.status_code >= 400:
             raise CollectError(f"{method} {url}: HTTP {response.status_code}")
-        return response.json()
+        try:
+            body = response.json()
+            if not isinstance(body, dict):
+                raise ValueError("expected a JSON object")
+            return body
+        except ValueError as exc:
+            if attempt == retries:
+                raise CollectError(f"{method} {url}: invalid JSON response after {retries} retries") from exc
+            sleep(min(2.0 ** attempt, MAX_WAIT_SECONDS))
     raise AssertionError("unreachable")
+
+
+def checked_response(function):
+    """Malformed source payloads participate in per-pipeline stale carry-over."""
+    @wraps(function)
+    def checked(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except (KeyError, TypeError, ValueError, AttributeError, OverflowError) as exc:
+            raise CollectError(f"{function.__qualname__}: malformed source response") from exc
+    return checked
+
+
+def source_count(value: Any) -> int:
+    if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+        raise ValueError("expected a nonnegative integer count")
+    return value

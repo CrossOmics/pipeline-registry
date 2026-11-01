@@ -34,15 +34,3 @@ versions:
   commit: 02513e1ac31a7e8fb4b0349ff9039cc66812f40c
   parent: null
   released_at: '2026-10-29'
-- id: cv_scanpy_2
-  kind: optimization
-  label: v0.18.1
-  repo: https://github.com/scverse/rapids-singlecell
-  commit: ad9b8470baf9ee21d9f89ac16e25b43d13115e0a
-  parent: cv_scanpy_1
-  released_at: '2026-10-12'
-  contributors:
-  - name: scverse
-    github: scverse
-    role: developer
-  improvement: GPU (RAPIDS) implementations of Scanpy preprocessing, embedding and clustering functions on AnnData objects.

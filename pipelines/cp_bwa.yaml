@@ -29,12 +29,19 @@ contributors:
 versions:
 - id: cv_bwa_1
   kind: original
+  label: v0.7.17
+  repo: https://github.com/lh3/bwa
+  commit: 9f26bfcc7780753129b60717ecab0ebba6f04b7c
+  parent: null
+  released_at: '2017-10-23'
+- id: cv_bwa_2
+  kind: original
   label: v0.7.19
   repo: https://github.com/lh3/bwa
   commit: b92993c1161e73167181558856567ef2f367e3f0
-  parent: null
+  parent: cv_bwa_1
   released_at: '2025-03-22'
-- id: cv_bwa_2
+- id: cv_bwa_3
   kind: optimization
   label: v2.3
   repo: https://github.com/bwa-mem2/bwa-mem2
