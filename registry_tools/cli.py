@@ -1,3 +1,7 @@
+import shutil
+
+from registry_tools.index import build_index, write_dist
+from registry_tools.schema import load_vocab
 import json
 import os
 from datetime import datetime, timezone
@@ -103,6 +107,25 @@ def _collect(args: argparse.Namespace) -> int:
     return 0
 
 
+def _build(args: argparse.Namespace) -> int:
+    issues = run_validation(args.root)
+    if issues:
+        for issue in issues:
+            print(issue)
+        print("not building: the registry has issues")
+        return 1
+    metrics = None
+    if args.metrics is not None and args.metrics.exists():
+        metrics = json.loads(args.metrics.read_text(encoding="utf-8"))
+    now = datetime.now(timezone.utc).replace(microsecond=0)
+    index = build_index(load_registry(args.root), metrics, args.registry_commit, now,
+                        vocab=load_vocab(args.root / "schema" / "vocab.yaml"))
+    digest = write_dist(index, args.out)
+    shutil.copy(args.root / SCHEMA_FILE, args.out / "pipeline.schema.json")
+    print(f"index.json {digest} ({len(index['pipelines'])} pipelines)")
+    return 0
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="registry_tools")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -118,11 +141,17 @@ def _parser() -> argparse.ArgumentParser:
     collect = sub.add_parser("collect", help="collect GitHub activity and citations")
     collect.add_argument("--root", type=Path, default=Path("."))
     collect.add_argument("--metrics-dir", type=Path, required=True)
+    build = sub.add_parser("build", help="build dist/index.json and its sha256")
+    build.add_argument("--root", type=Path, default=Path("."))
+    build.add_argument("--metrics", type=Path, help="metrics/latest.json; built without metrics when missing")
+    build.add_argument("--out", type=Path, default=Path("dist"))
+    build.add_argument("--registry-commit", required=True)
     return parser
 
 
 COMMANDS: Dict[str, Callable[[argparse.Namespace], int]] = {
-    "validate": _validate, "fmt": _fmt, "gen-schema": _gen_schema}
+    "validate": _validate, "fmt": _fmt, "gen-schema": _gen_schema, "collect": _collect, "build": _build,
+}
 
 
 def main(argv: Optional[List[str]] = None) -> int:

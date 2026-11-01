@@ -52,3 +52,15 @@ def test_fmt_rewrites_files_to_canonical_form(tmp_path, capsys):
     assert main(["fmt", "--root", str(root)]) == 0
     assert alpha.read_text(encoding="utf-8") == canonical
     assert main(["fmt", "--check", "--root", str(root)]) == 0
+def test_build_writes_dist_without_metrics(tmp_path, capsys):
+    root = _registry(tmp_path / "reg", pipeline_doc("cp_alpha"))
+    out = tmp_path / "dist"
+    assert main(["build", "--root", str(root), "--metrics", str(tmp_path / "missing.json"), "--out", str(out),
+                 "--registry-commit", "a" * 40]) == 0
+    assert (out / "index.json").exists() and (out / "index.json.sha256").exists()
+    assert (out / "pipeline.schema.json").exists()
+
+
+def test_build_refuses_an_invalid_registry(tmp_path):
+    root = _registry(tmp_path / "reg", pipeline_doc("cp_alpha", versions=[version_doc("cv_alpha_1", parent="cv_x_1")]))
+    assert main(["build", "--root", str(root), "--out", str(tmp_path / "dist"), "--registry-commit", "a" * 40]) == 1
