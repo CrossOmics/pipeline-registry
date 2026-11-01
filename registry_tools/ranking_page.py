@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 REPOSITORY_URL = "https://github.com/CrossOmics/pipeline-registry"
+COMMUNITY_UPDATES_URL = "https://github.com/BioCode-Commons"
 TITLE = "Pipelines that may need community attention"
 REASONS = {
     "deprecated": "deprecated",
@@ -101,6 +102,10 @@ def render_ranking_page(index: Dict[str, Any]) -> str:
         f'<a href="{REPOSITORY_URL}/commit/{escape(commit)}">{escape(commit[:7])}</a></p>\n'
         "<p>Pipelines whose papers are widely cited while their repositories have seen little recent activity "
         "rank highest: the community may want to take a look at them.</p>\n"
+        '<p><strong>Community updates:</strong> '
+        f'<a href="{COMMUNITY_UPDATES_URL}">BioCode Commons</a>. '
+        'New versions of pipelines that need maintenance will be shared here, '
+        'starting with STAR and MAFFT.</p>\n'
         f"<h2>Ranking</h2>\n{_table(ranked, years)}\n"
         "<h2>Mature (stable) pipelines</h2>\n<p>Marked stable by their maintainers, so little activity is "
         f"expected.</p>\n{_table(stable, years)}\n"
@@ -116,7 +121,9 @@ def render_landing(index: Dict[str, Any]) -> str:
         f"<p>{len(index['pipelines'])} registered pipelines.</p>\n<ul>"
         f'<li><a href="ranking/">{TITLE}</a></li>'
         '<li><a href="index.json">index.json</a> (<a href="index.json.sha256">sha256</a>)</li>'
-        f'<li><a href="{REPOSITORY_URL}">Registry repository</a></li></ul>'
+        f'<li><a href="{REPOSITORY_URL}">Registry repository</a></li>'
+        f'<li><a href="{COMMUNITY_UPDATES_URL}">BioCode Commons</a> — community updates '
+        '(STAR and MAFFT coming soon)</li></ul>'
     )
     return _page("CrossOmics pipeline registry", body)
 

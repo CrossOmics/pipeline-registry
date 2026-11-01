@@ -83,3 +83,12 @@ The pending package is excluded from this initial publication scope.
   are intended destinations and are not claimed to be deployed.
 - All repository credentials used for read-only collection stayed in process
   memory. No token or optional API key is part of either branch.
+
+## BioCode Commons destination
+
+The ranking page, landing page and README now link to
+[BioCode Commons](https://github.com/BioCode-Commons), where the team will share
+new versions of pipelines needing maintenance, starting with STAR and MAFFT.
+This adds a destination link rather than registering unverified version ancestry.
+The generated ranking link was checked in a local browser; all 99 registry tests
+pass. This content change has not been deployed.

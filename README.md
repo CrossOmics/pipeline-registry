@@ -7,6 +7,9 @@ its upstream releases (`kind: original`) and the community optimizations built o
 (https://crossomics.github.io/pipeline-registry/index.json); the weekly risk ranking is at
 https://crossomics.github.io/pipeline-registry/ranking/.
 
+New versions of pipelines that need maintenance will be shared through
+[BioCode Commons](https://github.com/BioCode-Commons), starting with STAR and MAFFT.
+
 ## Adding a pipeline or a version
 
 The easiest way is Gardener's Community › Register tab: it fills in the form, checks it, and opens
