@@ -1,0 +1,35 @@
+schema_version: 1
+id: cp_encode_chip_seq
+name: ENCODE ChIP-seq pipeline
+kind: workflow
+description: ENCODE ChIP-seq pipeline
+domain: epigenomics
+modalities:
+- chip-seq
+inputs:
+- fastq
+outputs:
+- bam
+- bed
+- bigwig
+algorithms:
+- BWA
+- MACS2
+- SPP
+- IDR
+status: active
+repositories:
+- url: https://github.com/ENCODE-DCC/chip-seq-pipeline2
+  primary: true
+contributors:
+- name: ENCODE-DCC
+  github: ENCODE-DCC
+  role: maintainer
+versions:
+- id: cv_encode_chip_seq_1
+  kind: original
+  label: v2.2.2
+  repo: https://github.com/ENCODE-DCC/chip-seq-pipeline2
+  commit: 26eeda81a0540dc793fc69b0c390d232ca7ca50a
+  parent: null
+  released_at: '2024-02-15'

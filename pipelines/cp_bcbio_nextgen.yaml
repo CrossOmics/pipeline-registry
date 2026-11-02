@@ -1,0 +1,35 @@
+schema_version: 1
+id: cp_bcbio_nextgen
+name: bcbio-nextgen
+kind: workflow
+description: Validated, scalable, community developed variant calling, RNA-seq and small RNA analysis
+domain: genomics
+modalities:
+- dna-seq
+- bulk-rna-seq
+inputs:
+- fastq
+outputs:
+- bam
+- vcf
+algorithms:
+- BWA
+- GATK
+- FreeBayes
+- STAR
+status: active
+repositories:
+- url: https://github.com/bcbio/bcbio-nextgen
+  primary: true
+contributors:
+- name: bcbio
+  github: bcbio
+  role: maintainer
+versions:
+- id: cv_bcbio_nextgen_1
+  kind: original
+  label: v1.2.9
+  repo: https://github.com/bcbio/bcbio-nextgen
+  commit: a2cbdd17a2246429976ae0f0b04b84c8b0252049
+  parent: null
+  released_at: '2021-12-15'

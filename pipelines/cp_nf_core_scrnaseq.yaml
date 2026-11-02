@@ -1,0 +1,37 @@
+schema_version: 1
+id: cp_nf_core_scrnaseq
+name: nf-core/scrnaseq
+kind: workflow
+description: Single-cell RNA-Seq pipeline for barcode-based protocols such as 10x, DropSeq or SmartSeq, offering a variety of aligners and empty-droplet detection
+domain: transcriptomics
+modalities:
+- scrna-seq
+inputs:
+- fastq
+outputs:
+- h5ad
+- mtx
+algorithms:
+- STARsolo
+- alevin-fry
+- kallisto-bustools
+- Cell Ranger
+status: active
+repositories:
+- url: https://github.com/nf-core/scrnaseq
+  primary: true
+papers:
+- doi: 10.1038/s41587-020-0439-x
+  title: The nf-core framework for community-curated bioinformatics pipelines
+contributors:
+- name: nf-core
+  github: nf-core
+  role: maintainer
+versions:
+- id: cv_nf_core_scrnaseq_1
+  kind: original
+  label: 4.2.0
+  repo: https://github.com/nf-core/scrnaseq
+  commit: 3fc17b4f971a89e47c88337de71d0e777ffad8cc
+  parent: null
+  released_at: '2026-07-03'

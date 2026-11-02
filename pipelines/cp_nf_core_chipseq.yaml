@@ -1,0 +1,36 @@
+schema_version: 1
+id: cp_nf_core_chipseq
+name: nf-core/chipseq
+kind: workflow
+description: ChIP-seq peak-calling, QC and differential analysis pipeline.
+domain: epigenomics
+modalities:
+- chip-seq
+inputs:
+- fastq
+outputs:
+- bam
+- bed
+- bigwig
+algorithms:
+- BWA
+- MACS2
+status: active
+repositories:
+- url: https://github.com/nf-core/chipseq
+  primary: true
+papers:
+- doi: 10.1038/s41587-020-0439-x
+  title: The nf-core framework for community-curated bioinformatics pipelines
+contributors:
+- name: nf-core
+  github: nf-core
+  role: maintainer
+versions:
+- id: cv_nf_core_chipseq_1
+  kind: original
+  label: 2.1.0
+  repo: https://github.com/nf-core/chipseq
+  commit: 76e2382b6d443db4dc2396e6831d1243256d80b0
+  parent: null
+  released_at: '2024-10-07'

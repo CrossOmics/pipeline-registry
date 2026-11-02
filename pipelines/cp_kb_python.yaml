@@ -1,0 +1,36 @@
+schema_version: 1
+id: cp_kb_python
+name: kallisto | bustools (kb-python)
+kind: tool
+description: A wrapper for the kallisto | bustools workflow for single-cell RNA-seq pre-processing
+domain: transcriptomics
+modalities:
+- scrna-seq
+inputs:
+- fastq
+outputs:
+- h5ad
+- mtx
+- loom
+algorithms:
+- kallisto
+- bustools
+status: active
+repositories:
+- url: https://github.com/pachterlab/kb_python
+  primary: true
+papers:
+- doi: 10.1038/s41587-021-00870-2
+  title: Modular, efficient and constant-memory single-cell RNA-seq preprocessing
+contributors:
+- name: pachterlab
+  github: pachterlab
+  role: maintainer
+versions:
+- id: cv_kb_python_1
+  kind: original
+  label: v0.30.2
+  repo: https://github.com/pachterlab/kb_python
+  commit: 188d9c7034498d83be86a461659968dd8da2db7f
+  parent: null
+  released_at: '2026-05-19'

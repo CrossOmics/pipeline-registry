@@ -1,0 +1,36 @@
+schema_version: 1
+id: cp_scvi_tools
+name: scvi-tools
+kind: tool
+description: Deep probabilistic analysis of single-cell and spatial omics data
+domain: transcriptomics
+modalities:
+- scrna-seq
+- cite-seq
+inputs:
+- h5ad
+outputs:
+- h5ad
+algorithms:
+- scVI
+- scANVI
+- totalVI
+status: active
+repositories:
+- url: https://github.com/scverse/scvi-tools
+  primary: true
+papers:
+- doi: 10.1038/s41587-021-01206-w
+  title: A Python library for probabilistic analysis of single-cell omics data
+contributors:
+- name: scverse
+  github: scverse
+  role: maintainer
+versions:
+- id: cv_scvi_tools_1
+  kind: original
+  label: 1.5.2
+  repo: https://github.com/scverse/scvi-tools
+  commit: 857385851ef02d68764e38f8a348fcb3c4d7c5c6
+  parent: null
+  released_at: '2026-10-28'

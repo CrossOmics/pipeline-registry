@@ -1,0 +1,36 @@
+schema_version: 1
+id: cp_nf_core_atacseq
+name: nf-core/atacseq
+kind: workflow
+description: ATAC-seq peak-calling and QC analysis pipeline
+domain: epigenomics
+modalities:
+- atac-seq
+inputs:
+- fastq
+outputs:
+- bam
+- bed
+- bigwig
+algorithms:
+- BWA
+- MACS2
+status: active
+repositories:
+- url: https://github.com/nf-core/atacseq
+  primary: true
+papers:
+- doi: 10.1038/s41587-020-0439-x
+  title: The nf-core framework for community-curated bioinformatics pipelines
+contributors:
+- name: nf-core
+  github: nf-core
+  role: maintainer
+versions:
+- id: cv_nf_core_atacseq_1
+  kind: original
+  label: 2.1.2
+  repo: https://github.com/nf-core/atacseq
+  commit: 1a1dbe52ffbd82256c941a032b0e22abbd925b8a
+  parent: null
+  released_at: '2023-08-07'

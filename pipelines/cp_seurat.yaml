@@ -1,0 +1,37 @@
+schema_version: 1
+id: cp_seurat
+name: Seurat
+kind: tool
+description: R toolkit for single cell genomics
+domain: transcriptomics
+modalities:
+- scrna-seq
+- cite-seq
+inputs:
+- mtx
+- rds
+outputs:
+- rds
+algorithms:
+- SCTransform
+- CCA integration
+- Louvain
+status: active
+repositories:
+- url: https://github.com/satijalab/seurat
+  primary: true
+papers:
+- doi: 10.1016/j.cell.2021.04.048
+  title: Integrated analysis of multimodal single-cell data
+contributors:
+- name: satijalab
+  github: satijalab
+  role: maintainer
+versions:
+- id: cv_seurat_1
+  kind: original
+  label: v5.6.0
+  repo: https://github.com/satijalab/seurat
+  commit: 75dfa8603befe31505e6287d32dc86c607732bd6
+  parent: null
+  released_at: '2026-10-02'

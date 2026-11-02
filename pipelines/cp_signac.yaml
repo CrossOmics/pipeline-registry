@@ -1,0 +1,35 @@
+schema_version: 1
+id: cp_signac
+name: Signac
+kind: tool
+description: R toolkit for the analysis of single-cell chromatin data
+domain: epigenomics
+modalities:
+- scatac-seq
+inputs:
+- bed
+outputs:
+- rds
+algorithms:
+- LSI
+- MACS2
+- chromVAR
+status: active
+repositories:
+- url: https://github.com/stuart-lab/signac
+  primary: true
+papers:
+- doi: 10.1038/s41592-021-01282-5
+  title: Single-cell chromatin state analysis with Signac
+contributors:
+- name: stuart-lab
+  github: stuart-lab
+  role: maintainer
+versions:
+- id: cv_signac_1
+  kind: original
+  label: 1.17.1
+  repo: https://github.com/stuart-lab/signac
+  commit: 12d1ff82774890b08e55b3101f36fab83e674b88
+  parent: null
+  released_at: '2026-04-06'

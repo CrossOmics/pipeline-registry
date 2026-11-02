@@ -1,0 +1,35 @@
+schema_version: 1
+id: cp_simpleaf
+name: simpleaf (alevin-fry)
+kind: tool
+description: A rust framework to make using alevin-fry even simpler
+domain: transcriptomics
+modalities:
+- scrna-seq
+inputs:
+- fastq
+outputs:
+- h5ad
+- mtx
+algorithms:
+- alevin-fry
+- salmon
+status: active
+repositories:
+- url: https://github.com/COMBINE-lab/simpleaf
+  primary: true
+papers:
+- doi: 10.1038/s41592-022-01408-3
+  title: Alevin-fry unlocks rapid, accurate and memory-frugal quantification of single-cell RNA-seq data
+contributors:
+- name: COMBINE-lab
+  github: COMBINE-lab
+  role: maintainer
+versions:
+- id: cv_simpleaf_1
+  kind: original
+  label: v0.32.0
+  repo: https://github.com/COMBINE-lab/simpleaf
+  commit: b5b151b4d87aeaad1506245beee3269d88f2c7f5
+  parent: null
+  released_at: '2026-10-26'
