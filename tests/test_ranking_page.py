@@ -63,7 +63,10 @@ def test_page_is_static_escaped_and_deterministic():
     assert "&lt;b&gt;A&amp;B&lt;/b&gt;" in html and "<b>A&B</b>" not in html
     assert "<script" not in html and "<link" not in html and " src=" not in html
     assert "Pipelines that may need community attention" in html
-    assert 'href="https://github.com/CrossOmics/pipeline-registry/commit/abc1234' in html
+    assert 'href="https://www.cross-omics.com/"' in html
+    assert "Back to home" in html
+    assert "Metrics collected" not in html and "registry commit" not in html
+    assert index["metrics_collected_at"] not in html and index["registry_commit"] not in html
     assert render_ranking_page(index) == html
 
 

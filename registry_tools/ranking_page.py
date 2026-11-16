@@ -8,6 +8,7 @@ from typing import Any, Dict, List
 from registry_tools.model import primary_repository
 
 REPOSITORY_URL = "https://github.com/CrossOmics/pipeline-registry"
+COMMUNITY_HOME_URL = "https://www.cross-omics.com/"
 COMMUNITY_UPDATES_URL = "https://github.com/BioCode-Commons"
 TITLE = "Pipelines that may need community attention"
 REASONS = {
@@ -21,6 +22,9 @@ REASONS = {
 _STYLE = (
     "body{font:15px/1.5 system-ui,sans-serif;margin:0 auto;max-width:72rem;padding:1.5rem 1rem;"
     "background:#fff;color:#1d1d1f}"
+    ".home-link{display:inline-flex;align-items:center;min-height:2.5rem;padding:.25rem .9rem;"
+    "border:1px solid #0b57d0;border-radius:.5rem;color:#fff;background:#0b57d0;text-decoration:none}"
+    ".home-link:hover{background:#0845a8}.home-link:focus-visible{outline:3px solid #8ab4f8;outline-offset:3px}"
     ".wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}"
     "th,td{border-bottom:1px solid #ddd;padding:.4rem .5rem;text-align:left;white-space:nowrap}"
     ".n{text-align:right}"
@@ -108,15 +112,12 @@ def render_ranking_page(index: Dict[str, Any]) -> str:
     stable = sorted((item for item in eligible if item["status"] == "stable"), key=order)
     excluded = sorted((item for item in pipelines if item["metrics"]["priority_reason"] is not None),
                       key=lambda item: item["name"])
-    commit = index["registry_commit"]
-    collected = index.get("metrics_collected_at") or "not yet"
     not_ranked = ("<ul>" + "".join(
         f"<li>{escape(item['name'])}: {escape(REASONS.get(item['metrics']['priority_reason'], item['metrics']['priority_reason']))}</li>"
         for item in excluded) + "</ul>") if excluded else "<p>None.</p>"
     body = (
+        f'<nav aria-label="Home"><a class="home-link" href="{COMMUNITY_HOME_URL}">&larr; Back to home</a></nav>\n'
         f"<h1>{TITLE}</h1>\n"
-        f"<p>Metrics collected {escape(collected)} · registry commit "
-        f'<a href="{REPOSITORY_URL}/commit/{escape(commit)}">{escape(commit[:7])}</a></p>\n'
         "<p>Pipelines whose papers are widely cited while their repositories have seen little recent activity "
         "rank highest: the community may want to take a look at them.</p>\n"
         '<p><strong>Community updates:</strong> '
