@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-11-09T10:44:39Z",
+  "collected_at": "2026-11-16T10:28:07Z",
   "config": {
     "activity_window_days": 365,
     "citation_window_years": 3
@@ -20,19 +20,19 @@
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/greenleaflab/archr",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/s41588-021-00790-6": {
           "by_year": {
-            "2024": 251,
-            "2025": 328,
-            "2026": 308
+            "2024": 281,
+            "2025": 332,
+            "2026": 346
           },
           "error": null,
-          "recent": 887,
+          "recent": 959,
           "source": "openalex",
-          "total": 1319,
+          "total": 1403,
           "work_id": "https://openalex.org/W3131634425"
         }
       },
@@ -49,11 +49,11 @@
         "moved_to_url": null,
         "raw": 0,
         "releases": 0,
-        "stars": 1030
+        "stars": 1031
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/bcbio/bcbio-nextgen",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {},
       "stale_since": null
@@ -69,23 +69,23 @@
         "moved_to_url": null,
         "raw": 6,
         "releases": 0,
-        "stars": 1774
+        "stars": 1776
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/lh3/bwa",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1093/bioinformatics/btp324": {
           "by_year": {
-            "2024": 5667,
-            "2025": 4963,
-            "2026": 4022
+            "2024": 6330,
+            "2025": 5040,
+            "2026": 4455
           },
           "error": null,
-          "recent": 14652,
+          "recent": 15825,
           "source": "openalex",
-          "total": 58548,
+          "total": 60977,
           "work_id": "https://openalex.org/W2103441770"
         }
       },
@@ -106,19 +106,19 @@
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/broadinstitute/cellbender",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/s41592-023-01943-7": {
           "by_year": {
-            "2024": 178,
-            "2025": 286,
-            "2026": 368
+            "2024": 188,
+            "2025": 290,
+            "2026": 433
           },
           "error": null,
-          "recent": 832,
+          "recent": 911,
           "source": "openalex",
-          "total": 985,
+          "total": 1072,
           "work_id": "https://openalex.org/W4385638791"
         }
       },
@@ -139,19 +139,19 @@
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/10xgenomics/cellranger",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/ncomms14049": {
           "by_year": {
-            "2024": 1085,
-            "2025": 1149,
-            "2026": 1141
+            "2024": 1189,
+            "2025": 1184,
+            "2026": 1320
           },
           "error": null,
-          "recent": 3375,
+          "recent": 3693,
           "source": "openalex",
-          "total": 7272,
+          "total": 7729,
           "work_id": "https://openalex.org/W2951506174"
         }
       },
@@ -168,11 +168,11 @@
         "moved_to_url": null,
         "raw": 1,
         "releases": 0,
-        "stars": 459
+        "stars": 460
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/encode-dcc/atac-seq-pipeline",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {},
       "stale_since": null
@@ -188,11 +188,11 @@
         "moved_to_url": null,
         "raw": 1,
         "releases": 0,
-        "stars": 283
+        "stars": 285
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/encode-dcc/chip-seq-pipeline2",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {},
       "stale_since": null
@@ -201,30 +201,30 @@
       "activity": {
         "archived": false,
         "closed_issues": 0,
-        "commits": 279,
+        "commits": 289,
         "error": null,
-        "last_commit_at": "2026-11-06T17:21:30Z",
-        "merged_prs": 237,
+        "last_commit_at": "2026-11-10T17:38:56Z",
+        "merged_prs": 246,
         "moved_to_url": null,
-        "raw": 1253,
+        "raw": 1281,
         "releases": 100,
-        "stars": 232
+        "stars": 233
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/broadinstitute/warp",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1002/0471250953.bi1110s43": {
           "by_year": {
-            "2024": 657,
-            "2025": 559,
-            "2026": 411
+            "2024": 706,
+            "2025": 606,
+            "2026": 540
           },
           "error": null,
-          "recent": 1627,
+          "recent": 1852,
           "source": "openalex",
-          "total": 6677,
+          "total": 6998,
           "work_id": "https://openalex.org/W1919257374"
         }
       },
@@ -234,30 +234,30 @@
       "activity": {
         "archived": false,
         "closed_issues": 10,
-        "commits": 22,
+        "commits": 32,
         "error": null,
-        "last_commit_at": "2026-05-19T07:05:01Z",
+        "last_commit_at": "2026-11-11T01:14:28Z",
         "merged_prs": 5,
         "moved_to_url": null,
-        "raw": 52,
-        "releases": 2,
+        "raw": 67,
+        "releases": 3,
         "stars": 194
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/pachterlab/kb_python",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/s41587-021-00870-2": {
           "by_year": {
             "2024": 98,
             "2025": 77,
-            "2026": 64
+            "2026": 72
           },
           "error": null,
-          "recent": 239,
+          "recent": 247,
           "source": "openalex",
-          "total": 495,
+          "total": 511,
           "work_id": "https://openalex.org/W3145635506"
         }
       },
@@ -278,7 +278,7 @@
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/kundajelab/atac_dnase_pipelines",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {},
       "stale_since": null
@@ -298,7 +298,7 @@
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/kundajelab/chipseq_pipeline",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {},
       "stale_since": null
@@ -310,27 +310,27 @@
         "commits": 4,
         "error": null,
         "last_commit_at": "2026-10-07T12:50:05Z",
-        "merged_prs": 18,
+        "merged_prs": 17,
         "moved_to_url": null,
-        "raw": 43,
+        "raw": 41,
         "releases": 0,
         "stars": 233
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/nf-core/atacseq",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/s41587-020-0439-x": {
           "by_year": {
-            "2024": 804,
-            "2025": 1228,
-            "2026": 1344
+            "2024": 852,
+            "2025": 1256,
+            "2026": 1464
           },
           "error": null,
-          "recent": 3376,
+          "recent": 3572,
           "source": "openalex",
-          "total": 4155,
+          "total": 4409,
           "work_id": "https://openalex.org/W3006653136"
         }
       },
@@ -343,27 +343,27 @@
         "commits": 4,
         "error": null,
         "last_commit_at": "2026-10-07T12:54:32Z",
-        "merged_prs": 36,
+        "merged_prs": 39,
         "moved_to_url": null,
-        "raw": 118,
+        "raw": 124,
         "releases": 0,
-        "stars": 245
+        "stars": 246
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/nf-core/chipseq",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/s41587-020-0439-x": {
           "by_year": {
-            "2024": 804,
-            "2025": 1228,
-            "2026": 1344
+            "2024": 852,
+            "2025": 1256,
+            "2026": 1464
           },
           "error": null,
-          "recent": 3376,
+          "recent": 3572,
           "source": "openalex",
-          "total": 4155,
+          "total": 4409,
           "work_id": "https://openalex.org/W3006653136"
         }
       },
@@ -376,27 +376,27 @@
         "commits": 4,
         "error": null,
         "last_commit_at": "2026-10-07T13:22:41Z",
-        "merged_prs": 5,
+        "merged_prs": 16,
         "moved_to_url": null,
-        "raw": 15,
+        "raw": 37,
         "releases": 0,
         "stars": 115
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/nf-core/hic",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/s41587-020-0439-x": {
           "by_year": {
-            "2024": 804,
-            "2025": 1228,
-            "2026": 1344
+            "2024": 852,
+            "2025": 1256,
+            "2026": 1464
           },
           "error": null,
-          "recent": 3376,
+          "recent": 3572,
           "source": "openalex",
-          "total": 4155,
+          "total": 4409,
           "work_id": "https://openalex.org/W3006653136"
         }
       },
@@ -405,31 +405,31 @@
     "cp_nf_core_methylseq": {
       "activity": {
         "archived": false,
-        "closed_issues": 4,
+        "closed_issues": 6,
         "commits": 60,
         "error": null,
         "last_commit_at": "2026-10-07T10:21:08Z",
-        "merged_prs": 26,
+        "merged_prs": 35,
         "moved_to_url": null,
-        "raw": 121,
+        "raw": 141,
         "releases": 1,
         "stars": 201
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/nf-core/methylseq",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/s41587-020-0439-x": {
           "by_year": {
-            "2024": 804,
-            "2025": 1228,
-            "2026": 1344
+            "2024": 852,
+            "2025": 1256,
+            "2026": 1464
           },
           "error": null,
-          "recent": 3376,
+          "recent": 3572,
           "source": "openalex",
-          "total": 4155,
+          "total": 4409,
           "work_id": "https://openalex.org/W3006653136"
         }
       },
@@ -438,31 +438,31 @@
     "cp_nf_core_rnaseq": {
       "activity": {
         "archived": false,
-        "closed_issues": 148,
-        "commits": 1357,
+        "closed_issues": 129,
+        "commits": 1469,
         "error": null,
-        "last_commit_at": "2026-10-08T08:36:42Z",
-        "merged_prs": 211,
+        "last_commit_at": "2026-11-11T22:01:08Z",
+        "merged_prs": 223,
         "moved_to_url": null,
-        "raw": 1967,
-        "releases": 8,
-        "stars": 1404
+        "raw": 2089,
+        "releases": 9,
+        "stars": 1407
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/nf-core/rnaseq",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/s41587-020-0439-x": {
           "by_year": {
-            "2024": 804,
-            "2025": 1228,
-            "2026": 1344
+            "2024": 852,
+            "2025": 1256,
+            "2026": 1464
           },
           "error": null,
-          "recent": 3376,
+          "recent": 3572,
           "source": "openalex",
-          "total": 4155,
+          "total": 4409,
           "work_id": "https://openalex.org/W3006653136"
         }
       },
@@ -471,31 +471,31 @@
     "cp_nf_core_sarek": {
       "activity": {
         "archived": false,
-        "closed_issues": 170,
-        "commits": 504,
+        "closed_issues": 179,
+        "commits": 657,
         "error": null,
-        "last_commit_at": "2026-10-26T17:11:35Z",
-        "merged_prs": 186,
+        "last_commit_at": "2026-11-11T12:13:33Z",
+        "merged_prs": 203,
         "moved_to_url": null,
-        "raw": 1081,
-        "releases": 7,
-        "stars": 618
+        "raw": 1282,
+        "releases": 8,
+        "stars": 622
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/nf-core/sarek",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.12688/f1000research.16665.2": {
           "by_year": {
-            "2024": 70,
-            "2025": 70,
-            "2026": 59
+            "2024": 75,
+            "2025": 72,
+            "2026": 69
           },
           "error": null,
-          "recent": 199,
+          "recent": 216,
           "source": "openalex",
-          "total": 283,
+          "total": 301,
           "work_id": "https://openalex.org/W3003159103"
         }
       },
@@ -504,31 +504,31 @@
     "cp_nf_core_scrnaseq": {
       "activity": {
         "archived": false,
-        "closed_issues": 53,
+        "closed_issues": 60,
         "commits": 186,
         "error": null,
         "last_commit_at": "2026-10-08T09:43:24Z",
-        "merged_prs": 51,
+        "merged_prs": 55,
         "moved_to_url": null,
-        "raw": 346,
+        "raw": 361,
         "releases": 1,
-        "stars": 364
+        "stars": 365
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/nf-core/scrnaseq",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/s41587-020-0439-x": {
           "by_year": {
-            "2024": 804,
-            "2025": 1228,
-            "2026": 1344
+            "2024": 852,
+            "2025": 1256,
+            "2026": 1464
           },
           "error": null,
-          "recent": 3376,
+          "recent": 3572,
           "source": "openalex",
-          "total": 4155,
+          "total": 4409,
           "work_id": "https://openalex.org/W3006653136"
         }
       },
@@ -537,31 +537,31 @@
     "cp_scanpy": {
       "activity": {
         "archived": false,
-        "closed_issues": 219,
-        "commits": 269,
+        "closed_issues": 233,
+        "commits": 279,
         "error": null,
-        "last_commit_at": "2026-11-06T12:21:05Z",
-        "merged_prs": 365,
+        "last_commit_at": "2026-11-13T15:01:17Z",
+        "merged_prs": 377,
         "moved_to_url": null,
-        "raw": 1268,
-        "releases": 10,
-        "stars": 2612
+        "raw": 1321,
+        "releases": 11,
+        "stars": 2617
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/scverse/scanpy",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1186/s13059-017-1382-0": {
           "by_year": {
-            "2024": 1575,
-            "2025": 1959,
-            "2026": 2264
+            "2024": 1686,
+            "2025": 2049,
+            "2026": 2685
           },
           "error": null,
-          "recent": 5798,
+          "recent": 6420,
           "source": "openalex",
-          "total": 8861,
+          "total": 9609,
           "work_id": "https://openalex.org/W2800392236"
         }
       },
@@ -570,31 +570,31 @@
     "cp_scvi_tools": {
       "activity": {
         "archived": false,
-        "closed_issues": 79,
+        "closed_issues": 74,
         "commits": 207,
         "error": null,
-        "last_commit_at": "2026-11-05T21:02:24Z",
-        "merged_prs": 393,
+        "last_commit_at": "2026-11-15T13:30:36Z",
+        "merged_prs": 391,
         "moved_to_url": null,
-        "raw": 1107,
+        "raw": 1098,
         "releases": 7,
-        "stars": 1723
+        "stars": 1728
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/scverse/scvi-tools",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/s41587-021-01206-w": {
           "by_year": {
-            "2024": 166,
-            "2025": 236,
-            "2026": 265
+            "2024": 168,
+            "2025": 240,
+            "2026": 312
           },
           "error": null,
-          "recent": 667,
+          "recent": 720,
           "source": "openalex",
-          "total": 828,
+          "total": 885,
           "work_id": "https://openalex.org/W4210587306"
         }
       },
@@ -603,31 +603,31 @@
     "cp_seurat": {
       "activity": {
         "archived": false,
-        "closed_issues": 228,
-        "commits": 601,
+        "closed_issues": 218,
+        "commits": 602,
         "error": null,
-        "last_commit_at": "2026-11-06T21:24:06Z",
-        "merged_prs": 85,
+        "last_commit_at": "2026-11-09T16:54:48Z",
+        "merged_prs": 86,
         "moved_to_url": null,
-        "raw": 1019,
-        "releases": 4,
-        "stars": 2815
+        "raw": 1017,
+        "releases": 5,
+        "stars": 2817
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/satijalab/seurat",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1016/j.cell.2021.04.048": {
           "by_year": {
-            "2024": 3776,
-            "2025": 3579,
-            "2026": 3321
+            "2024": 4125,
+            "2025": 3670,
+            "2026": 3706
           },
           "error": null,
-          "recent": 10676,
+          "recent": 11501,
           "source": "openalex",
-          "total": 15102,
+          "total": 16292,
           "work_id": "https://openalex.org/W3164692211"
         }
       },
@@ -636,31 +636,31 @@
     "cp_signac": {
       "activity": {
         "archived": false,
-        "closed_issues": 34,
-        "commits": 54,
+        "closed_issues": 35,
+        "commits": 47,
         "error": null,
         "last_commit_at": "2026-04-06T08:44:46Z",
         "merged_prs": 3,
         "moved_to_url": null,
-        "raw": 104,
+        "raw": 98,
         "releases": 2,
         "stars": 432
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/stuart-lab/signac",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/s41592-021-01282-5": {
           "by_year": {
-            "2024": 368,
-            "2025": 468,
-            "2026": 514
+            "2024": 383,
+            "2025": 473,
+            "2026": 566
           },
           "error": null,
-          "recent": 1350,
+          "recent": 1422,
           "source": "openalex",
-          "total": 1828,
+          "total": 1915,
           "work_id": "https://openalex.org/W3210860076"
         }
       },
@@ -681,19 +681,19 @@
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/combine-lab/simpleaf",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1038/s41592-022-01408-3": {
           "by_year": {
-            "2024": 33,
+            "2024": 49,
             "2025": 36,
-            "2026": 25
+            "2026": 29
           },
           "error": null,
-          "recent": 94,
+          "recent": 114,
           "source": "openalex",
-          "total": 115,
+          "total": 135,
           "work_id": "https://openalex.org/W4220812447"
         }
       },
@@ -710,23 +710,23 @@
         "moved_to_url": null,
         "raw": 24,
         "releases": 2,
-        "stars": 373
+        "stars": 372
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/snakemake-workflows/rna-seq-star-deseq2",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.12688/f1000research.29032.2": {
           "by_year": {
-            "2024": 385,
-            "2025": 446,
-            "2026": 428
+            "2024": 420,
+            "2025": 449,
+            "2026": 520
           },
           "error": null,
-          "recent": 1259,
+          "recent": 1389,
           "source": "openalex",
-          "total": 1816,
+          "total": 1960,
           "work_id": "https://openalex.org/W3122109253"
         }
       },
@@ -747,31 +747,31 @@
       },
       "activity_reason": null,
       "activity_repository": "https://github.com/alexdobin/star",
-      "collected_at": "2026-11-09T10:44:39Z",
+      "collected_at": "2026-11-16T10:28:07Z",
       "error": null,
       "papers": {
         "doi:10.1093/bioinformatics/bts635": {
           "by_year": {
-            "2024": 7135,
-            "2025": 7040,
-            "2026": 6350
+            "2024": 7939,
+            "2025": 7159,
+            "2026": 7092
           },
           "error": null,
-          "recent": 20525,
+          "recent": 22190,
           "source": "openalex",
-          "total": 50757,
+          "total": 53586,
           "work_id": "https://openalex.org/W2169456326"
         },
         "doi:10.1101/2021.05.05.442755": {
           "by_year": {
-            "2024": 91,
-            "2025": 123,
-            "2026": 126
+            "2024": 95,
+            "2025": 126,
+            "2026": 142
           },
           "error": null,
-          "recent": 340,
+          "recent": 363,
           "source": "openalex",
-          "total": 444,
+          "total": 471,
           "work_id": "https://openalex.org/W3159756629"
         }
       },
