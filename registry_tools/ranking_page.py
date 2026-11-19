@@ -19,24 +19,39 @@ REASONS = {
     "unsupported_host": "repository is not on GitHub",
     "repo_unreachable": "repository could not be read",
 }
-_STYLE = (
-    "body{font:15px/1.5 system-ui,sans-serif;margin:0 auto;max-width:72rem;padding:1.5rem 1rem;"
-    "background:#fff;color:#1d1d1f}"
-    ".home-link{display:inline-flex;align-items:center;min-height:2.5rem;padding:.25rem .9rem;"
-    "border:1px solid #0b57d0;border-radius:.5rem;color:#fff;background:#0b57d0;text-decoration:none}"
-    ".home-link:hover{background:#0845a8}.home-link:focus-visible{outline:3px solid #8ab4f8;outline-offset:3px}"
-    ".wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}"
-    "th,td{border-bottom:1px solid #ddd;padding:.4rem .5rem;text-align:left;white-space:nowrap}"
-    ".n{text-align:right}"
-    ".badge{border:1px solid #999;border-radius:.6rem;font-size:.75rem;margin-left:.3rem;padding:0 .4rem}"
-    "@media (prefers-color-scheme:dark){body{background:#111;color:#eee}th,td{border-color:#333}a{color:#8ab4f8}}"
+_STYLE = Path(__file__).with_name("ranking.css").read_text(encoding="utf-8")
+_NAV = (
+    ("Submit a Contribution", COMMUNITY_HOME_URL + "community/submit"),
+    ("Explore Existing Tools", COMMUNITY_HOME_URL),
+    ("Maintenance Needed", "https://crossomics.github.io/pipeline-registry/ranking/"),
+    ("Tools Wanted", COMMUNITY_HOME_URL + "community/bounties"),
 )
 
 
-def _page(title: str, body: str) -> str:
+def _navigation(*, active: bool = False) -> str:
+    return "".join(
+        f'<a href="{url}"' + (' aria-current="page"' if active and label == "Maintenance Needed" else "")
+        + f'>{label}</a>' for label, url in _NAV
+    )
+
+
+def _page(title: str, body: str, *, ranking: bool = False) -> str:
+    navigation = (
+        '<div class="breadcrumb"><a href="' + COMMUNITY_HOME_URL + '">Home</a><span>/</span>'
+        '<span>Community Tracking</span></div>'
+        '<nav class="community-nav" aria-label="Community">' + _navigation(active=ranking) + '</nav>'
+    ) if ranking else ""
+    main_class = "container" if ranking else "container landing"
     return ('<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1">'
-            f"<title>{escape(title)}</title><style>{_STYLE}</style></head>\n<body>\n{body}\n</body></html>\n")
+            '<meta name="color-scheme" content="only light">'
+            f"<title>{escape(title)}</title><style>{_STYLE}</style></head>\n<body>\n"
+            f'<header class="site-header"><div class="container"><a class="logo" href="{COMMUNITY_HOME_URL}">'
+            'CrossOmics <small>Community</small></a></div></header>'
+            f'<main class="{main_class}">{navigation}{body}</main>'
+            '<footer class="site-footer"><div class="container"><nav aria-label="Footer">'
+            + _navigation() + '</nav><a href="' + COMMUNITY_HOME_URL + '">Back to home</a></div></footer>'
+            '\n</body></html>\n')
 
 
 def _badges(item: Dict[str, Any]) -> str:
@@ -50,15 +65,15 @@ def _badges(item: Dict[str, Any]) -> str:
 def _maintenance(item: Dict[str, Any]) -> str:
     record = item.get("biocode_maintenance")
     if not record:
-        return "Not registered"
+        return '<span class="maintenance">Not registered</span>'
     if record["status"] == "planned":
-        return "Planned"
-    return f'<a href="{escape(record["repository"], quote=True)}">Available</a>'
+        return '<span class="maintenance planned">Planned</span>'
+    return f'<span class="maintenance available"><a href="{escape(record["repository"], quote=True)}">Available</a></span>'
 
 
-def _table(items: List[Dict[str, Any]], years: List[int]) -> str:
+def _table(items: List[Dict[str, Any]], years: List[int], label: str = "Ranking") -> str:
     if not items:
-        return "<p>None.</p>"
+        return '<p class="empty">None.</p>'
     labels = [f"{year} (YTD)" if year == years[-1] else str(year) for year in years]
     head = ('<tr><th class="n">#</th><th>Pipeline</th><th>Kind</th><th class="n">Risk score</th>'
             "<th>Original GitHub update</th><th>BioCode maintenance</th>" + "".join(f'<th class="n">Citations {label}</th>' for label in labels)
@@ -73,12 +88,15 @@ def _table(items: List[Dict[str, Any]], years: List[int]) -> str:
         updated = f'<a href="{escape(upstream, quote=True)}">{date}</a>' if upstream else date
         rows.append(
             f'<tr><td class="n">{rank}</td><td><a href="{escape(link)}">{escape(item["name"])}</a>{_badges(item)}</td>'
-            f'<td>{escape(item["kind"])}</td><td class="n">{metrics["priority"]:.4f}</td>'
+            f'<td>{escape(item["kind"])}</td><td class="n score">{metrics["priority"]:.4f}'
+            f'<span class="score-track" aria-hidden="true"><span style="width:{min(100, max(0, metrics["priority"] * 100)):.2f}%"></span></span></td>'
             f'<td>{updated}</td><td>{_maintenance(item)}</td>'
             + "".join(f'<td class="n">{int(by_year.get(str(year), 0))}</td>' for year in years)
             + f'<td>{activity["commits"]} / {activity["releases"]} / {activity["merged_prs"]} / '
               f'{activity["closed_issues"]}</td></tr>')
-    return '<div class="wrap"><table>\n' + head + "\n" + "\n".join(rows) + "\n</table></div>"
+    return (f'<div class="wrap" role="region" aria-label="{escape(label, quote=True)} data" tabindex="0"><table>'
+            f'<caption class="sr-only">{escape(label)}: maintenance priority, citations and original repository activity</caption>'
+            + "<thead>" + head + "</thead><tbody>" + "\n".join(rows) + "</tbody></table></div>")
 
 
 def _method(index: Dict[str, Any]) -> str:
@@ -112,25 +130,34 @@ def render_ranking_page(index: Dict[str, Any]) -> str:
     stable = sorted((item for item in eligible if item["status"] == "stable"), key=order)
     excluded = sorted((item for item in pipelines if item["metrics"]["priority_reason"] is not None),
                       key=lambda item: item["name"])
-    not_ranked = ("<ul>" + "".join(
+    not_ranked = ('<ul class="excluded">' + "".join(
         f"<li>{escape(item['name'])}: {escape(REASONS.get(item['metrics']['priority_reason'], item['metrics']['priority_reason']))}</li>"
         for item in excluded) + "</ul>") if excluded else "<p>None.</p>"
     body = (
-        f'<nav aria-label="Home"><a class="home-link" href="{COMMUNITY_HOME_URL}">&larr; Back to home</a></nav>\n'
-        f"<h1>{TITLE}</h1>\n"
-        "<p>Pipelines whose papers are widely cited while their repositories have seen little recent activity "
-        "rank highest: the community may want to take a look at them.</p>\n"
-        '<p><strong>Community updates:</strong> '
+        f'<a class="home-link" href="{COMMUNITY_HOME_URL}">&larr; Back to home</a>'
+        '<section class="intro" aria-labelledby="page-title">'
+        '<h1 id="page-title">Maintenance Needed</h1>'
+        f'<p class="intro-subtitle">{TITLE}</p>'
+        '<p>Pipelines whose papers are widely cited while their repositories have seen little recent activity '
+        'rank highest: the community may want to take a look at them.</p></section>'
+        '<p class="updates"><strong>Community updates:</strong> '
         f'<a href="{COMMUNITY_UPDATES_URL}">BioCode Commons</a>. '
         'New versions of pipelines that need maintenance will be shared here, '
-        'starting with STAR and MAFFT.</p>\n'
-        f"<h2>Ranking</h2>\n{_table(ranked, years)}\n"
-        "<h2>Mature (stable) pipelines</h2>\n<p>Marked stable by their maintainers, so little activity is "
-        f"expected.</p>\n{_table(stable, years)}\n"
-        f"<h2>Not ranked</h2>\n{not_ranked}\n"
-        f"<h2>How the score is computed</h2>\n{_method(index)}"
+        'starting with STAR and MAFFT.</p>'
+        '<section class="ranking-section"><div class="section-top"><h2>Ranking</h2>'
+        f'<p>{len(ranked)} ranked pipelines &middot; Highest priority first</p></div>'
+        '<p class="section-description">Scroll the table horizontally to see all citation and activity metrics.</p>'
+        f'{_table(ranked, years)}</section>'
+        '<div class="supporting"><section class="ranking-section">'
+        '<h2>Mature (stable) pipelines</h2><p class="section-description">Marked stable by their maintainers, so little activity is '
+        f'expected.</p>{_table(stable, years, "Stable pipelines")}</section>'
+        '<section class="ranking-section"><h2>Not ranked</h2>'
+        '<p class="section-description">Entries without enough data to score, or marked deprecated.</p>'
+        f'{not_ranked}</section></div>'
+        '<details class="method"><summary><h2>How the score is computed</h2></summary>'
+        f'<div class="method-content">{_method(index)}</div></details>'
     )
-    return _page(TITLE, body)
+    return _page(TITLE, body, ranking=True)
 
 
 def render_landing(index: Dict[str, Any]) -> str:
