@@ -77,3 +77,27 @@ def test_write_pages_writes_the_landing_and_ranking_pages(tmp_path):
     landing = (tmp_path / "index.html").read_text(encoding="utf-8")
     assert landing == render_landing(index)
     assert 'href="ranking/"' in landing and 'href="index.json"' in landing
+
+
+def test_ranking_return_links_use_the_official_community_origin():
+    # Configure production OAuth to match the official website, not its hosting alias.
+    from html.parser import HTMLParser
+    from urllib.parse import urlsplit
+
+    class Links(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.hrefs = []
+
+        def handle_starttag(self, tag, attrs):
+            if tag == "a":
+                self.hrefs.extend(value for key, value in attrs if key == "href")
+
+    for html in (render_ranking_page(_index()), render_landing(_index())):
+        links = Links()
+        links.feed(html)
+        community = [urlsplit(href) for href in links.hrefs if "cross-omics" in href]
+        assert community
+        assert {url.netloc for url in community} == {"www.cross-omics.com"}
+        assert "/community/submit" in {url.path for url in community}
+        assert "/community/bounties" in {url.path for url in community}
