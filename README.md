@@ -7,6 +7,13 @@ its upstream releases (`kind: original`) and the community optimizations built o
 (https://crossomics.github.io/pipeline-registry/index.json); the weekly risk ranking is at
 https://crossomics.github.io/pipeline-registry/ranking/.
 
+The ranking page's Community links return to `https://www.cross-omics.com/`,
+the official Community website. Keep the backend’s production `COMMUNITY_WEB_ORIGIN`, the `COMMUNITY_HOME_URL`
+constant in `registry_tools/ranking_page.py`, and the OAuth callback configuration
+aligned with that origin. A different website alias has a different host-only session cookie
+and can ask an already signed-in user to log in again. The ranking does not receive,
+copy or store Community login cookies.
+
 New versions of pipelines that need maintenance will be shared through
 [BioCode Commons](https://github.com/BioCode-Commons), starting with STAR and MAFFT.
 

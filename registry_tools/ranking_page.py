@@ -8,6 +8,8 @@ from typing import Any, Dict, List
 from registry_tools.model import primary_repository
 
 REPOSITORY_URL = "https://github.com/CrossOmics/pipeline-registry"
+# Keep the Community backend's COMMUNITY_WEB_ORIGIN and OAuth callbacks aligned
+# with this official website origin. The apex domain redirects to the www host.
 COMMUNITY_HOME_URL = "https://www.cross-omics.com/"
 COMMUNITY_UPDATES_URL = "https://github.com/BioCode-Commons"
 TITLE = "Pipelines that may need community attention"
